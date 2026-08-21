@@ -4,11 +4,10 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// Repo is falconboi12.github.io → user site, served at root. No `base` needed.
-// If this ever moves to a project repo, add `base` here AND thread it through
-// every internal link via import.meta.env.BASE_URL (see DEPLOYMENT.md).
+// Repo is portfolio → project site, served at /portfolio. Requires `base` config.
 export default defineConfig({
-  site: 'https://falconboi12.github.io',
+  site: 'https://sarthakanand12.github.io',
+  base: '/portfolio',
   output: 'static',
   integrations: [preact(), mdx(), sitemap()],
   vite: { plugins: [tailwindcss()] },
