@@ -1,0 +1,2630 @@
+{
+  "generated_from": "2026-08-08",
+  "defaultMinWeight": 2,
+  "nodes": [
+    {
+      "id": "agent-harness",
+      "label": "Agent Harness",
+      "count": 4,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "agent extensibility (MCP/plugins/skills)",
+        "agent harness design",
+        "agent skills",
+        "coding agents",
+        "context management",
+        "harness optimization",
+        "observability"
+      ],
+      "papers": [
+        "agentic-harness-engineering",
+        "dive-into-claude-code",
+        "meta-harness-end-to-end-optimization-of-model-harnesses",
+        "skillopt-executive-strategy-for-self-evolving-agent-skills"
+      ]
+    },
+    {
+      "id": "attention-mechanisms",
+      "label": "Attention Mechanisms",
+      "count": 4,
+      "theme": "Inference Optimization",
+      "rawTags": [
+        "attention sink",
+        "attention sink (related)",
+        "attention sparsity",
+        "softmax attention analysis",
+        "tree attention"
+      ],
+      "papers": [
+        "massive-activations-in-large-language-models",
+        "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads",
+        "refrag-rethinking-rag-based-decoding",
+        "when-attention-sink-emerges-in-language-models"
+      ]
+    },
+    {
+      "id": "benchmarking",
+      "label": "Benchmarking",
+      "count": 8,
+      "theme": "Evaluation & Safety",
+      "rawTags": [
+        "LLM evaluation",
+        "RAG evaluation",
+        "benchmarking framework",
+        "dialogue evaluation",
+        "evaluation / benchmark",
+        "evaluation benchmarks",
+        "introductory explainer",
+        "reproducibility",
+        "survey"
+      ],
+      "papers": [
+        "a-comparison-of-different-machine-transliteration-models",
+        "a-vision-researcher-s-guide-to-rl-ppo-grpo",
+        "ares-automated-evaluation-framework-for-rag-systems",
+        "dialogrpt-dialogue-response-ranking-with-human-feedback",
+        "flashrag-a-modular-toolkit-for-rag-research",
+        "judging-llm-as-a-judge-with-mt-bench-and-chatbot-arena",
+        "learning-under-concept-drift-a-review",
+        "llms-get-lost-in-multi-turn-conversation"
+      ]
+    },
+    {
+      "id": "chain-of-thought",
+      "label": "Chain-of-Thought",
+      "count": 8,
+      "theme": "Reasoning",
+      "rawTags": [
+        "ARC-AGI",
+        "LLM reasoning survey",
+        "arithmetic/commonsense reasoning",
+        "certainty probing",
+        "chain-of-thought efficiency",
+        "chain-of-thought prompting",
+        "chain-of-thought supervision",
+        "learning to reason",
+        "mathematical reasoning",
+        "reasoning",
+        "reasoning models",
+        "reasoning termination",
+        "symbolic + semantic reasoning"
+      ],
+      "papers": [
+        "a-survey-of-frontiers-in-llm-reasoning",
+        "chain-of-thought-prompting-elicits-reasoning-in-llms",
+        "deepseekmath-pushing-the-limits-of-mathematical-reasoning",
+        "dynasor-cot-reasoning-without-self-doubt-via-certainty-probing",
+        "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables",
+        "hierarchical-reasoning-model-hrm",
+        "privileged-information-distillation-for-language-models",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "id": "context-compression",
+      "label": "Context Compression",
+      "count": 5,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "context compression",
+        "embedding compression",
+        "prompt compression",
+        "prompt pruning",
+        "token pruning",
+        "token reduction"
+      ],
+      "papers": [
+        "dynasor-cot-reasoning-without-self-doubt-via-certainty-probing",
+        "llmlingua-compressing-prompts-for-accelerated-inference",
+        "longrefiner-hierarchical-document-refinement-for-long-context-rag",
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "selective-context-compressing-context-to-enhance-inference-efficiency"
+      ]
+    },
+    {
+      "id": "contrastive-learning",
+      "label": "Contrastive Learning",
+      "count": 4,
+      "theme": "Representation Learning & Embeddings",
+      "rawTags": [
+        "contrastive fine-tuning",
+        "contrastive learning",
+        "dropout-based augmentation",
+        "loss function design"
+      ],
+      "papers": [
+        "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning",
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "supcl-seq-supervised-contrastive-learning-for-sequence-representations",
+        "supervised-contrastive-learning-supcon"
+      ]
+    },
+    {
+      "id": "decoding-strategies",
+      "label": "Decoding Strategies",
+      "count": 1,
+      "theme": "Fine-tuning & Alignment",
+      "rawTags": [
+        "decoding methods",
+        "text degeneration",
+        "unlikelihood training"
+      ],
+      "papers": [
+        "neural-text-degeneration-with-unlikelihood-training"
+      ]
+    },
+    {
+      "id": "dense-retrieval",
+      "label": "Dense Retrieval",
+      "count": 4,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "efficient retrieval",
+        "first-stage retrieval",
+        "unsupervised dense retrieval",
+        "unsupervised retrieval",
+        "zero-shot dense retrieval"
+      ],
+      "papers": [
+        "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning",
+        "hyde-precise-zero-shot-dense-retrieval-without-relevance-labels",
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings"
+      ]
+    },
+    {
+      "id": "dialogue-policy",
+      "label": "Dialogue Policy",
+      "count": 6,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "dialogue management",
+        "dialogue policy planning",
+        "finite automaton",
+        "finite-state dialogue control",
+        "hierarchical goals",
+        "proactive dialogue",
+        "semantic routing",
+        "topic management",
+        "workflow compliance"
+      ],
+      "papers": [
+        "dfa-rag-conversational-semantic-router-with-definite-finite-automaton",
+        "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management",
+        "gopo-goal-oriented-preference-optimization",
+        "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals",
+        "ppdpp-plug-and-play-dialogue-policy-planner",
+        "script-based-dialog-policy-planning-for-an-ai-therapist"
+      ]
+    },
+    {
+      "id": "dialogue-state-tracking",
+      "label": "Dialogue State Tracking",
+      "count": 2,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "dialogue state tracking",
+        "slot filling"
+      ],
+      "papers": [
+        "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals",
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "id": "distillation",
+      "label": "Distillation",
+      "count": 6,
+      "theme": "Fine-tuning & Alignment",
+      "rawTags": [
+        "compact models",
+        "knowledge distillation",
+        "on-policy distillation",
+        "privileged information",
+        "privileged information distillation",
+        "self-distillation",
+        "self-knowledge distillation",
+        "teacher-student distillation",
+        "teacher-student training"
+      ],
+      "papers": [
+        "dopd-dual-on-policy-distillation",
+        "elt-elastic-looped-transformers-for-visual-generation",
+        "gliner-generalist-model-for-named-entity-recognition",
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity",
+        "privileged-information-distillation-for-language-models",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "id": "distribution-drift",
+      "label": "Distribution Drift",
+      "count": 1,
+      "theme": "Drift & Distribution Shift",
+      "rawTags": [
+        "concept drift",
+        "distribution shift",
+        "drift detection and adaptation",
+        "streaming data"
+      ],
+      "papers": [
+        "learning-under-concept-drift-a-review"
+      ]
+    },
+    {
+      "id": "embedding-geometry",
+      "label": "Embedding Geometry",
+      "count": 2,
+      "theme": "NLP Applications",
+      "rawTags": [
+        "anisotropy",
+        "embedding geometry",
+        "retrieval degradation",
+        "semantic space alignment"
+      ],
+      "papers": [
+        "lisa-llm-guided-semantic-aware-clustering-for-topic-modeling",
+        "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval"
+      ]
+    },
+    {
+      "id": "embedding-models",
+      "label": "Embedding Models",
+      "count": 9,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "contextual embeddings",
+        "embedding compression",
+        "embedding models",
+        "long-text embeddings",
+        "multilingual embeddings",
+        "pooling operations",
+        "sentence representation learning",
+        "sentence transformers",
+        "sequence representation learning",
+        "supervised representation learning"
+      ],
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity",
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval",
+        "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction",
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings",
+        "speech-and-language-processing-bert-chapter-jurafsky-martin",
+        "supcl-seq-supervised-contrastive-learning-for-sequence-representations",
+        "supervised-contrastive-learning-supcon"
+      ]
+    },
+    {
+      "id": "hybrid-retrieval",
+      "label": "Hybrid Retrieval",
+      "count": 2,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "graph-based retrieval",
+        "hybrid retrieval",
+        "hybrid retrieval (dense+sparse+multi-vector)",
+        "score fusion"
+      ],
+      "papers": [
+        "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph",
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "id": "inference-time-scaling",
+      "label": "Inference Time Scaling",
+      "count": 2,
+      "theme": "Reasoning",
+      "rawTags": [
+        "inference scaling",
+        "inference-time scaling"
+      ],
+      "papers": [
+        "a-survey-of-frontiers-in-llm-reasoning",
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "id": "jailbreak-detection",
+      "label": "Jailbreak Detection",
+      "count": 3,
+      "theme": "Evaluation & Safety",
+      "rawTags": [
+        "adversarial intent detection",
+        "attack state machine",
+        "jailbreak/prompt-injection detection",
+        "multi-turn jailbreak attacks",
+        "multi-turn jailbreak detection",
+        "reasoning-driven attacks",
+        "stateful monitoring (RNN)"
+      ],
+      "papers": [
+        "deepcontext-stateful-real-time-detection-of-multi-turn-adversarial-intent-drift-in-llms",
+        "javelinguard-low-cost-transformer-architectures-for-llm-security",
+        "race-reasoning-augmented-conversation-for-multi-turn-jailbreak-attacks"
+      ]
+    },
+    {
+      "id": "kv-cache-optimization",
+      "label": "KV-Cache Optimization",
+      "count": 4,
+      "theme": "Inference Optimization",
+      "rawTags": [
+        "KV cache / compute reduction",
+        "KV cache compression",
+        "KV cache optimization",
+        "chunked prefill",
+        "prefill-decode scheduling"
+      ],
+      "papers": [
+        "arctic-inference-with-shift-parallelism",
+        "refrag-rethinking-rag-based-decoding",
+        "sarathi-efficient-llm-inference-via-chunked-prefills",
+        "when-attention-sink-emerges-in-language-models"
+      ]
+    },
+    {
+      "id": "llm-as-judge",
+      "label": "LLM-as-Judge",
+      "count": 2,
+      "theme": "Evaluation & Safety",
+      "rawTags": [
+        "Chatbot Arena",
+        "LLM-as-judge",
+        "MT-Bench",
+        "automated evaluation",
+        "evaluation bias"
+      ],
+      "papers": [
+        "ares-automated-evaluation-framework-for-rag-systems",
+        "judging-llm-as-a-judge-with-mt-bench-and-chatbot-arena"
+      ]
+    },
+    {
+      "id": "long-context",
+      "label": "Long Context",
+      "count": 5,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "long-context LLMs",
+        "long-context RAG",
+        "long-context processing",
+        "long-text embeddings"
+      ],
+      "papers": [
+        "longrefiner-hierarchical-document-refinement-for-long-context-rag",
+        "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval",
+        "recursive-language-models-rlm",
+        "refrag-rethinking-rag-based-decoding",
+        "selective-context-compressing-context-to-enhance-inference-efficiency"
+      ]
+    },
+    {
+      "id": "multi-agent-orchestration",
+      "label": "Multi Agent Orchestration",
+      "count": 6,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "LLM agents",
+        "agent orchestration",
+        "agentic systems",
+        "multi-agent systems",
+        "recursive agents",
+        "sub-agent orchestration"
+      ],
+      "papers": [
+        "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning",
+        "a-survey-of-frontiers-in-llm-reasoning",
+        "agentic-harness-engineering",
+        "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management",
+        "dive-into-claude-code",
+        "thread-thinking-deeper-with-recursive-spawning"
+      ]
+    },
+    {
+      "id": "multi-turn-modeling",
+      "label": "Multi Turn Modeling",
+      "count": 3,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "conversational reliability",
+        "dialogue evaluation",
+        "discourse-level modeling",
+        "hierarchical context modeling",
+        "multi-turn dialogue",
+        "multi-turn dialogue generation",
+        "underspecification"
+      ],
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback",
+        "llms-get-lost-in-multi-turn-conversation",
+        "multiturn-dialogue-generation-via-sentence-and-discourse-level-context"
+      ]
+    },
+    {
+      "id": "multilingual-representation",
+      "label": "Multilingual Representation",
+      "count": 3,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "Indic languages",
+        "cross-lingual representation",
+        "cross-lingual retrieval",
+        "multilingual embeddings",
+        "multilingual language models"
+      ],
+      "papers": [
+        "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning",
+        "does-transliteration-help-multilingual-language-modeling",
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "id": "peft-lora",
+      "label": "PEFT / LoRA",
+      "count": 5,
+      "theme": "Fine-tuning & Alignment",
+      "rawTags": [
+        "(IA)^3",
+        "LoRA",
+        "continuous prompts",
+        "dynamic LoRA fusion",
+        "multi-task adaptation",
+        "parameter efficiency",
+        "parameter-efficient fine-tuning",
+        "prefix-tuning",
+        "prompt-based adaptation"
+      ],
+      "papers": [
+        "dlp-lora-efficient-task-specific-lora-fusion",
+        "elt-elastic-looped-transformers-for-visual-generation",
+        "prefix-tuning-optimizing-continuous-prompts-for-generation",
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking",
+        "t-few-few-shot-peft-is-better-and-cheaper-than-in-context-learning"
+      ]
+    },
+    {
+      "id": "policy-gradient-rl",
+      "label": "Policy-Gradient RL",
+      "count": 7,
+      "theme": "Fine-tuning & Alignment",
+      "rawTags": [
+        "GRPO",
+        "PPO",
+        "PPO/GRPO/RLOO",
+        "RL training recipe",
+        "agentic reinforcement learning",
+        "hierarchical reinforcement learning",
+        "multi-turn agentic RL",
+        "reinforcement learning",
+        "self-play"
+      ],
+      "papers": [
+        "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning",
+        "a-vision-researcher-s-guide-to-rl-ppo-grpo",
+        "deepseekmath-pushing-the-limits-of-mathematical-reasoning",
+        "gopo-goal-oriented-preference-optimization",
+        "ppdpp-plug-and-play-dialogue-policy-planner",
+        "privileged-information-distillation-for-language-models",
+        "rearank-reasoning-re-ranking-agent-via-reinforcement-learning"
+      ]
+    },
+    {
+      "id": "preference-optimization",
+      "label": "Preference Optimization",
+      "count": 4,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "RLHF",
+        "RLHF alternative",
+        "direct preference optimization",
+        "human feedback data",
+        "preference alignment",
+        "preference optimization"
+      ],
+      "papers": [
+        "a-vision-researcher-s-guide-to-rl-ppo-grpo",
+        "dialogrpt-dialogue-response-ranking-with-human-feedback",
+        "dpo-direct-preference-optimization",
+        "gopo-goal-oriented-preference-optimization"
+      ]
+    },
+    {
+      "id": "prompt-optimization",
+      "label": "Prompt Optimization",
+      "count": 3,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "harness optimization",
+        "prompt optimization",
+        "skill optimization"
+      ],
+      "papers": [
+        "meta-harness-end-to-end-optimization-of-model-harnesses",
+        "prefix-tuning-optimizing-continuous-prompts-for-generation",
+        "skillopt-executive-strategy-for-self-evolving-agent-skills"
+      ]
+    },
+    {
+      "id": "query-routing",
+      "label": "Query Routing",
+      "count": 3,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "adaptive retrieval",
+        "hypothetical document embeddings",
+        "self-knowledge",
+        "semantic routing",
+        "when-to-retrieve"
+      ],
+      "papers": [
+        "dfa-rag-conversational-semantic-router-with-definite-finite-automaton",
+        "hyde-precise-zero-shot-dense-retrieval-without-relevance-labels",
+        "skr-self-knowledge-guided-retrieval-augmentation"
+      ]
+    },
+    {
+      "id": "rag-pipeline-design",
+      "label": "RAG Pipeline Design",
+      "count": 8,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "NLI-based filtering",
+        "RAG decoding efficiency",
+        "RAG for tables",
+        "RAG toolkit",
+        "context enrichment",
+        "document refinement",
+        "hierarchical document structuring",
+        "long-context RAG",
+        "modular RAG",
+        "multi-hop QA",
+        "retrieval augmentation",
+        "retrieval-augmented LMs",
+        "retrieval-augmented generation",
+        "robustness to irrelevant context"
+      ],
+      "papers": [
+        "ares-automated-evaluation-framework-for-rag-systems",
+        "beyond-extraction-contextualising-tabular-data-for-summarisation",
+        "dfa-rag-conversational-semantic-router-with-definite-finite-automaton",
+        "flashrag-a-modular-toolkit-for-rag-research",
+        "longrefiner-hierarchical-document-refinement-for-long-context-rag",
+        "making-retrieval-augmented-language-models-robust-to-irrelevant-context",
+        "refrag-rethinking-rag-based-decoding",
+        "skr-self-knowledge-guided-retrieval-augmentation"
+      ]
+    },
+    {
+      "id": "recursive-architectures",
+      "label": "Recursive Architectures",
+      "count": 3,
+      "theme": "Reasoning",
+      "rawTags": [
+        "hierarchical reasoning",
+        "looped/recurrent transformers",
+        "recurrent reasoning architecture",
+        "recursive language models"
+      ],
+      "papers": [
+        "elt-elastic-looped-transformers-for-visual-generation",
+        "hierarchical-reasoning-model-hrm",
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "id": "reranking",
+      "label": "Reranking",
+      "count": 2,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "LLM reranking",
+        "listwise reranking",
+        "reasoning-based reranking",
+        "response ranking"
+      ],
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback",
+        "rearank-reasoning-re-ranking-agent-via-reinforcement-learning"
+      ]
+    },
+    {
+      "id": "response-ranking",
+      "label": "Response Ranking",
+      "count": 1,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "engagement prediction",
+        "response ranking"
+      ],
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "id": "reward-modeling",
+      "label": "Reward Modeling",
+      "count": 2,
+      "theme": "Fine-tuning & Alignment",
+      "rawTags": [
+        "reward design",
+        "reward modeling"
+      ],
+      "papers": [
+        "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning",
+        "dpo-direct-preference-optimization"
+      ]
+    },
+    {
+      "id": "safety-guardrails",
+      "label": "Safety Guardrails",
+      "count": 4,
+      "theme": "Evaluation & Safety",
+      "rawTags": [
+        "LLM safety",
+        "LLM safety guardrails",
+        "LLM safety in healthcare",
+        "LLM security",
+        "guardrail models",
+        "red-teaming"
+      ],
+      "papers": [
+        "deepcontext-stateful-real-time-detection-of-multi-turn-adversarial-intent-drift-in-llms",
+        "javelinguard-low-cost-transformer-architectures-for-llm-security",
+        "race-reasoning-augmented-conversation-for-multi-turn-jailbreak-attacks",
+        "script-based-dialog-policy-planning-for-an-ai-therapist"
+      ]
+    },
+    {
+      "id": "self-improving-agents",
+      "label": "Self Improving Agents",
+      "count": 3,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "self-evolving agents",
+        "skill optimization"
+      ],
+      "papers": [
+        "agentic-harness-engineering",
+        "meta-harness-end-to-end-optimization-of-model-harnesses",
+        "skillopt-executive-strategy-for-self-evolving-agent-skills"
+      ]
+    },
+    {
+      "id": "serving-systems",
+      "label": "Serving Systems",
+      "count": 9,
+      "theme": "Inference Optimization",
+      "rawTags": [
+        "agentic workloads",
+        "dynamic parallelism",
+        "enterprise inference",
+        "inference acceleration",
+        "inference efficiency",
+        "inference serving systems",
+        "inference throughput",
+        "pipeline parallelism"
+      ],
+      "papers": [
+        "arctic-inference-with-shift-parallelism",
+        "eagle-2-faster-inference-with-dynamic-draft-trees",
+        "eagle-3-scaling-up-inference-acceleration-via-training-time-test",
+        "eagle-speculative-sampling-requires-rethinking-feature-uncertainty",
+        "llmlingua-compressing-prompts-for-accelerated-inference",
+        "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads",
+        "sarathi-efficient-llm-inference-via-chunked-prefills",
+        "selective-context-compressing-context-to-enhance-inference-efficiency",
+        "suffixdecoding-extreme-speculative-decoding-for-agentic-applications"
+      ]
+    },
+    {
+      "id": "sparse-retrieval",
+      "label": "Sparse Retrieval",
+      "count": 2,
+      "theme": "RAG & Retrieval",
+      "rawTags": [
+        "FLOP-regularized embeddings",
+        "learned sparse representations",
+        "sparse representation learning",
+        "sparse retrieval"
+      ],
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings"
+      ]
+    },
+    {
+      "id": "speculative-decoding",
+      "label": "Speculative Decoding",
+      "count": 6,
+      "theme": "Inference Optimization",
+      "rawTags": [
+        "draft model design",
+        "dynamic draft tree",
+        "feature uncertainty",
+        "multi-layer feature fusion",
+        "multiple decoding heads",
+        "speculative decoding",
+        "suffix trees",
+        "training-time test",
+        "tree attention"
+      ],
+      "papers": [
+        "arctic-inference-with-shift-parallelism",
+        "eagle-2-faster-inference-with-dynamic-draft-trees",
+        "eagle-3-scaling-up-inference-acceleration-via-training-time-test",
+        "eagle-speculative-sampling-requires-rethinking-feature-uncertainty",
+        "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads",
+        "suffixdecoding-extreme-speculative-decoding-for-agentic-applications"
+      ]
+    },
+    {
+      "id": "structure-induction-clustering",
+      "label": "Structure Induction & Clustering",
+      "count": 4,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "LLM-guided clustering",
+        "dialogue structure induction",
+        "graph neural networks",
+        "sentence order prediction",
+        "topic modeling",
+        "unsupervised clustering"
+      ],
+      "papers": [
+        "lisa-llm-guided-semantic-aware-clustering-for-topic-modeling",
+        "multiturn-dialogue-generation-via-sentence-and-discourse-level-context",
+        "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction",
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "id": "supervised-finetuning",
+      "label": "Supervised Finetuning",
+      "count": 10,
+      "theme": "Fine-tuning & Alignment",
+      "rawTags": [
+        "chain-of-thought supervision",
+        "few-shot learning",
+        "few-shot prompting",
+        "in-context learning",
+        "in-context learning comparison",
+        "instruction fine-tuning",
+        "language model training objectives",
+        "pretraining corpus curation",
+        "supervised fine-tuning",
+        "transfer learning"
+      ],
+      "papers": [
+        "chain-of-thought-prompting-elicits-reasoning-in-llms",
+        "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph",
+        "deepseekmath-pushing-the-limits-of-mathematical-reasoning",
+        "neural-text-degeneration-with-unlikelihood-training",
+        "privileged-information-distillation-for-language-models",
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "speech-and-language-processing-bert-chapter-jurafsky-martin",
+        "sql-palm-improved-llm-adaptation-for-text-to-sql",
+        "t-few-few-shot-peft-is-better-and-cheaper-than-in-context-learning",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "id": "synthetic-data-generation",
+      "label": "Synthetic Data Generation",
+      "count": 3,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "automatic data generation",
+        "multi-turn dialogue generation",
+        "synthetic data generation"
+      ],
+      "papers": [
+        "gauchobot-building-robust-tod-systems-from-scratch",
+        "multiturn-dialogue-generation-via-sentence-and-discourse-level-context",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "id": "tabular-reasoning",
+      "label": "Tabular Reasoning",
+      "count": 4,
+      "theme": "Text2SQL & Tabular Data",
+      "rawTags": [
+        "RAG for tables",
+        "hybrid question answering",
+        "table question answering",
+        "table summarization",
+        "tabular + unstructured reasoning",
+        "tabular data extraction",
+        "tabular data pipelines",
+        "tabular reasoning"
+      ],
+      "papers": [
+        "beyond-extraction-contextualising-tabular-data-for-summarisation",
+        "blendsql-a-scalable-dialect-for-unifying-hybrid-question-answering",
+        "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables",
+        "weaver-interweaving-sql-and-llm-for-table-reasoning"
+      ]
+    },
+    {
+      "id": "task-decomposition",
+      "label": "Task Decomposition",
+      "count": 2,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "hierarchical reasoning",
+        "task decomposition"
+      ],
+      "papers": [
+        "hierarchical-reasoning-model-hrm",
+        "thread-thinking-deeper-with-recursive-spawning"
+      ]
+    },
+    {
+      "id": "task-oriented-dialogue",
+      "label": "Task Oriented Dialogue",
+      "count": 7,
+      "theme": "Dialogue Systems",
+      "rawTags": [
+        "AI therapist / mental health AI",
+        "Alexa Prize",
+        "dialogue system architecture",
+        "dialogue systems",
+        "e-commerce customer service",
+        "enterprise dialogue systems",
+        "multi-domain dialogue",
+        "task-oriented dialogue",
+        "task-oriented dialogue systems"
+      ],
+      "papers": [
+        "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management",
+        "gauchobot-building-robust-tod-systems-from-scratch",
+        "gopo-goal-oriented-preference-optimization",
+        "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals",
+        "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction",
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking",
+        "script-based-dialog-policy-planning-for-an-ai-therapist"
+      ]
+    },
+    {
+      "id": "text-classification-ner",
+      "label": "Text Classification & NER",
+      "count": 5,
+      "theme": "NLP Applications",
+      "rawTags": [
+        "NLP classification",
+        "image classification",
+        "named entity recognition",
+        "text classification",
+        "transformer classifiers",
+        "zero-shot NER"
+      ],
+      "papers": [
+        "gliner-generalist-model-for-named-entity-recognition",
+        "javelinguard-low-cost-transformer-architectures-for-llm-security",
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "supcl-seq-supervised-contrastive-learning-for-sequence-representations",
+        "supervised-contrastive-learning-supcon"
+      ]
+    },
+    {
+      "id": "text-to-sql",
+      "label": "Text-to-SQL",
+      "count": 6,
+      "theme": "Text2SQL & Tabular Data",
+      "rawTags": [
+        "LLM-based SQL generation",
+        "SQL + LLM hybrid reasoning",
+        "database interfaces",
+        "hybrid SQL-text reasoning",
+        "relational algebra",
+        "schema linking",
+        "text-to-SQL",
+        "text-to-SQL survey"
+      ],
+      "papers": [
+        "blendsql-a-scalable-dialect-for-unifying-hybrid-question-answering",
+        "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph",
+        "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables",
+        "next-generation-database-interfaces-a-survey-of-llm-based-text-to-sql",
+        "sql-palm-improved-llm-adaptation-for-text-to-sql",
+        "weaver-interweaving-sql-and-llm-for-table-reasoning"
+      ]
+    },
+    {
+      "id": "tool-use",
+      "label": "Tool Use",
+      "count": 4,
+      "theme": "Agents & Orchestration",
+      "rawTags": [
+        "agentic question answering",
+        "database interfaces",
+        "external memory/environment",
+        "tool use"
+      ],
+      "papers": [
+        "dive-into-claude-code",
+        "next-generation-database-interfaces-a-survey-of-llm-based-text-to-sql",
+        "recursive-language-models-rlm",
+        "thread-thinking-deeper-with-recursive-spawning"
+      ]
+    },
+    {
+      "id": "transformer-internals",
+      "label": "Transformer Internals",
+      "count": 7,
+      "theme": "LLM Architecture & Internals",
+      "rawTags": [
+        "BERT",
+        "LLM pretraining dynamics",
+        "LLM/VLM",
+        "PaLM",
+        "bidirectional transformer",
+        "diffusion models",
+        "interpretability",
+        "masked language modeling",
+        "massive activations",
+        "model internals",
+        "transformer fundamentals",
+        "visual generation"
+      ],
+      "papers": [
+        "dopd-dual-on-policy-distillation",
+        "elt-elastic-looped-transformers-for-visual-generation",
+        "gliner-generalist-model-for-named-entity-recognition",
+        "massive-activations-in-large-language-models",
+        "speech-and-language-processing-bert-chapter-jurafsky-martin",
+        "sql-palm-improved-llm-adaptation-for-text-to-sql",
+        "when-attention-sink-emerges-in-language-models"
+      ]
+    },
+    {
+      "id": "transliteration",
+      "label": "Transliteration",
+      "count": 2,
+      "theme": "NLP Applications",
+      "rawTags": [
+        "machine transliteration models",
+        "phonetic conversion",
+        "script normalization",
+        "transliteration"
+      ],
+      "papers": [
+        "a-comparison-of-different-machine-transliteration-models",
+        "does-transliteration-help-multilingual-language-modeling"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "serving-systems",
+      "target": "speculative-decoding",
+      "weight": 6,
+      "papers": [
+        "arctic-inference-with-shift-parallelism",
+        "eagle-2-faster-inference-with-dynamic-draft-trees",
+        "eagle-3-scaling-up-inference-acceleration-via-training-time-test",
+        "eagle-speculative-sampling-requires-rethinking-feature-uncertainty",
+        "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads",
+        "suffixdecoding-extreme-speculative-decoding-for-agentic-applications"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "supervised-finetuning",
+      "weight": 4,
+      "papers": [
+        "chain-of-thought-prompting-elicits-reasoning-in-llms",
+        "deepseekmath-pushing-the-limits-of-mathematical-reasoning",
+        "privileged-information-distillation-for-language-models",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "task-oriented-dialogue",
+      "weight": 4,
+      "papers": [
+        "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management",
+        "gopo-goal-oriented-preference-optimization",
+        "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals",
+        "script-based-dialog-policy-planning-for-an-ai-therapist"
+      ]
+    },
+    {
+      "source": "agent-harness",
+      "target": "self-improving-agents",
+      "weight": 3,
+      "papers": [
+        "agentic-harness-engineering",
+        "meta-harness-end-to-end-optimization-of-model-harnesses",
+        "skillopt-executive-strategy-for-self-evolving-agent-skills"
+      ]
+    },
+    {
+      "source": "contrastive-learning",
+      "target": "embedding-models",
+      "weight": 3,
+      "papers": [
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "supcl-seq-supervised-contrastive-learning-for-sequence-representations",
+        "supervised-contrastive-learning-supcon"
+      ]
+    },
+    {
+      "source": "contrastive-learning",
+      "target": "text-classification-ner",
+      "weight": 3,
+      "papers": [
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "supcl-seq-supervised-contrastive-learning-for-sequence-representations",
+        "supervised-contrastive-learning-supcon"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "transformer-internals",
+      "weight": 3,
+      "papers": [
+        "dopd-dual-on-policy-distillation",
+        "elt-elastic-looped-transformers-for-visual-generation",
+        "gliner-generalist-model-for-named-entity-recognition"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "text-classification-ner",
+      "weight": 3,
+      "papers": [
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "supcl-seq-supervised-contrastive-learning-for-sequence-representations",
+        "supervised-contrastive-learning-supcon"
+      ]
+    },
+    {
+      "source": "jailbreak-detection",
+      "target": "safety-guardrails",
+      "weight": 3,
+      "papers": [
+        "deepcontext-stateful-real-time-detection-of-multi-turn-adversarial-intent-drift-in-llms",
+        "javelinguard-low-cost-transformer-architectures-for-llm-security",
+        "race-reasoning-augmented-conversation-for-multi-turn-jailbreak-attacks"
+      ]
+    },
+    {
+      "source": "tabular-reasoning",
+      "target": "text-to-sql",
+      "weight": 3,
+      "papers": [
+        "blendsql-a-scalable-dialect-for-unifying-hybrid-question-answering",
+        "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables",
+        "weaver-interweaving-sql-and-llm-for-table-reasoning"
+      ]
+    },
+    {
+      "source": "agent-harness",
+      "target": "multi-agent-orchestration",
+      "weight": 2,
+      "papers": [
+        "agentic-harness-engineering",
+        "dive-into-claude-code"
+      ]
+    },
+    {
+      "source": "agent-harness",
+      "target": "prompt-optimization",
+      "weight": 2,
+      "papers": [
+        "meta-harness-end-to-end-optimization-of-model-harnesses",
+        "skillopt-executive-strategy-for-self-evolving-agent-skills"
+      ]
+    },
+    {
+      "source": "attention-mechanisms",
+      "target": "kv-cache-optimization",
+      "weight": 2,
+      "papers": [
+        "refrag-rethinking-rag-based-decoding",
+        "when-attention-sink-emerges-in-language-models"
+      ]
+    },
+    {
+      "source": "attention-mechanisms",
+      "target": "transformer-internals",
+      "weight": 2,
+      "papers": [
+        "massive-activations-in-large-language-models",
+        "when-attention-sink-emerges-in-language-models"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "llm-as-judge",
+      "weight": 2,
+      "papers": [
+        "ares-automated-evaluation-framework-for-rag-systems",
+        "judging-llm-as-a-judge-with-mt-bench-and-chatbot-arena"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "multi-turn-modeling",
+      "weight": 2,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback",
+        "llms-get-lost-in-multi-turn-conversation"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "preference-optimization",
+      "weight": 2,
+      "papers": [
+        "a-vision-researcher-s-guide-to-rl-ppo-grpo",
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "rag-pipeline-design",
+      "weight": 2,
+      "papers": [
+        "ares-automated-evaluation-framework-for-rag-systems",
+        "flashrag-a-modular-toolkit-for-rag-research"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "distillation",
+      "weight": 2,
+      "papers": [
+        "privileged-information-distillation-for-language-models",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "policy-gradient-rl",
+      "weight": 2,
+      "papers": [
+        "deepseekmath-pushing-the-limits-of-mathematical-reasoning",
+        "privileged-information-distillation-for-language-models"
+      ]
+    },
+    {
+      "source": "context-compression",
+      "target": "long-context",
+      "weight": 2,
+      "papers": [
+        "longrefiner-hierarchical-document-refinement-for-long-context-rag",
+        "selective-context-compressing-context-to-enhance-inference-efficiency"
+      ]
+    },
+    {
+      "source": "context-compression",
+      "target": "serving-systems",
+      "weight": 2,
+      "papers": [
+        "llmlingua-compressing-prompts-for-accelerated-inference",
+        "selective-context-compressing-context-to-enhance-inference-efficiency"
+      ]
+    },
+    {
+      "source": "dense-retrieval",
+      "target": "embedding-models",
+      "weight": 2,
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings"
+      ]
+    },
+    {
+      "source": "dense-retrieval",
+      "target": "sparse-retrieval",
+      "weight": 2,
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "policy-gradient-rl",
+      "weight": 2,
+      "papers": [
+        "gopo-goal-oriented-preference-optimization",
+        "ppdpp-plug-and-play-dialogue-policy-planner"
+      ]
+    },
+    {
+      "source": "dialogue-state-tracking",
+      "target": "task-oriented-dialogue",
+      "weight": 2,
+      "papers": [
+        "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals",
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "supervised-finetuning",
+      "weight": 2,
+      "papers": [
+        "privileged-information-distillation-for-language-models",
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "sparse-retrieval",
+      "weight": 2,
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations",
+        "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "supervised-finetuning",
+      "weight": 2,
+      "papers": [
+        "setfit-efficient-few-shot-learning-without-prompts",
+        "speech-and-language-processing-bert-chapter-jurafsky-martin"
+      ]
+    },
+    {
+      "source": "kv-cache-optimization",
+      "target": "serving-systems",
+      "weight": 2,
+      "papers": [
+        "arctic-inference-with-shift-parallelism",
+        "sarathi-efficient-llm-inference-via-chunked-prefills"
+      ]
+    },
+    {
+      "source": "long-context",
+      "target": "rag-pipeline-design",
+      "weight": 2,
+      "papers": [
+        "longrefiner-hierarchical-document-refinement-for-long-context-rag",
+        "refrag-rethinking-rag-based-decoding"
+      ]
+    },
+    {
+      "source": "multi-agent-orchestration",
+      "target": "tool-use",
+      "weight": 2,
+      "papers": [
+        "dive-into-claude-code",
+        "thread-thinking-deeper-with-recursive-spawning"
+      ]
+    },
+    {
+      "source": "policy-gradient-rl",
+      "target": "preference-optimization",
+      "weight": 2,
+      "papers": [
+        "a-vision-researcher-s-guide-to-rl-ppo-grpo",
+        "gopo-goal-oriented-preference-optimization"
+      ]
+    },
+    {
+      "source": "policy-gradient-rl",
+      "target": "supervised-finetuning",
+      "weight": 2,
+      "papers": [
+        "deepseekmath-pushing-the-limits-of-mathematical-reasoning",
+        "privileged-information-distillation-for-language-models"
+      ]
+    },
+    {
+      "source": "prompt-optimization",
+      "target": "self-improving-agents",
+      "weight": 2,
+      "papers": [
+        "meta-harness-end-to-end-optimization-of-model-harnesses",
+        "skillopt-executive-strategy-for-self-evolving-agent-skills"
+      ]
+    },
+    {
+      "source": "query-routing",
+      "target": "rag-pipeline-design",
+      "weight": 2,
+      "papers": [
+        "dfa-rag-conversational-semantic-router-with-definite-finite-automaton",
+        "skr-self-knowledge-guided-retrieval-augmentation"
+      ]
+    },
+    {
+      "source": "structure-induction-clustering",
+      "target": "task-oriented-dialogue",
+      "weight": 2,
+      "papers": [
+        "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction",
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "source": "supervised-finetuning",
+      "target": "text-to-sql",
+      "weight": 2,
+      "papers": [
+        "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph",
+        "sql-palm-improved-llm-adaptation-for-text-to-sql"
+      ]
+    },
+    {
+      "source": "supervised-finetuning",
+      "target": "transformer-internals",
+      "weight": 2,
+      "papers": [
+        "speech-and-language-processing-bert-chapter-jurafsky-martin",
+        "sql-palm-improved-llm-adaptation-for-text-to-sql"
+      ]
+    },
+    {
+      "source": "agent-harness",
+      "target": "tool-use",
+      "weight": 1,
+      "papers": [
+        "dive-into-claude-code"
+      ]
+    },
+    {
+      "source": "attention-mechanisms",
+      "target": "long-context",
+      "weight": 1,
+      "papers": [
+        "refrag-rethinking-rag-based-decoding"
+      ]
+    },
+    {
+      "source": "attention-mechanisms",
+      "target": "rag-pipeline-design",
+      "weight": 1,
+      "papers": [
+        "refrag-rethinking-rag-based-decoding"
+      ]
+    },
+    {
+      "source": "attention-mechanisms",
+      "target": "serving-systems",
+      "weight": 1,
+      "papers": [
+        "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads"
+      ]
+    },
+    {
+      "source": "attention-mechanisms",
+      "target": "speculative-decoding",
+      "weight": 1,
+      "papers": [
+        "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "distribution-drift",
+      "weight": 1,
+      "papers": [
+        "learning-under-concept-drift-a-review"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "policy-gradient-rl",
+      "weight": 1,
+      "papers": [
+        "a-vision-researcher-s-guide-to-rl-ppo-grpo"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "reranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "response-ranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "benchmarking",
+      "target": "transliteration",
+      "weight": 1,
+      "papers": [
+        "a-comparison-of-different-machine-transliteration-models"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "context-compression",
+      "weight": 1,
+      "papers": [
+        "dynasor-cot-reasoning-without-self-doubt-via-certainty-probing"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "inference-time-scaling",
+      "weight": 1,
+      "papers": [
+        "a-survey-of-frontiers-in-llm-reasoning"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "multi-agent-orchestration",
+      "weight": 1,
+      "papers": [
+        "a-survey-of-frontiers-in-llm-reasoning"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "recursive-architectures",
+      "weight": 1,
+      "papers": [
+        "hierarchical-reasoning-model-hrm"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "synthetic-data-generation",
+      "weight": 1,
+      "papers": [
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "tabular-reasoning",
+      "weight": 1,
+      "papers": [
+        "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "task-decomposition",
+      "weight": 1,
+      "papers": [
+        "hierarchical-reasoning-model-hrm"
+      ]
+    },
+    {
+      "source": "chain-of-thought",
+      "target": "text-to-sql",
+      "weight": 1,
+      "papers": [
+        "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables"
+      ]
+    },
+    {
+      "source": "context-compression",
+      "target": "dense-retrieval",
+      "weight": 1,
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations"
+      ]
+    },
+    {
+      "source": "context-compression",
+      "target": "embedding-models",
+      "weight": 1,
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations"
+      ]
+    },
+    {
+      "source": "context-compression",
+      "target": "rag-pipeline-design",
+      "weight": 1,
+      "papers": [
+        "longrefiner-hierarchical-document-refinement-for-long-context-rag"
+      ]
+    },
+    {
+      "source": "context-compression",
+      "target": "sparse-retrieval",
+      "weight": 1,
+      "papers": [
+        "minimizing-flops-to-learn-efficient-sparse-representations"
+      ]
+    },
+    {
+      "source": "contrastive-learning",
+      "target": "dense-retrieval",
+      "weight": 1,
+      "papers": [
+        "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning"
+      ]
+    },
+    {
+      "source": "contrastive-learning",
+      "target": "multilingual-representation",
+      "weight": 1,
+      "papers": [
+        "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning"
+      ]
+    },
+    {
+      "source": "contrastive-learning",
+      "target": "supervised-finetuning",
+      "weight": 1,
+      "papers": [
+        "setfit-efficient-few-shot-learning-without-prompts"
+      ]
+    },
+    {
+      "source": "decoding-strategies",
+      "target": "supervised-finetuning",
+      "weight": 1,
+      "papers": [
+        "neural-text-degeneration-with-unlikelihood-training"
+      ]
+    },
+    {
+      "source": "dense-retrieval",
+      "target": "multilingual-representation",
+      "weight": 1,
+      "papers": [
+        "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning"
+      ]
+    },
+    {
+      "source": "dense-retrieval",
+      "target": "query-routing",
+      "weight": 1,
+      "papers": [
+        "hyde-precise-zero-shot-dense-retrieval-without-relevance-labels"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "dialogue-state-tracking",
+      "weight": 1,
+      "papers": [
+        "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "multi-agent-orchestration",
+      "weight": 1,
+      "papers": [
+        "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "preference-optimization",
+      "weight": 1,
+      "papers": [
+        "gopo-goal-oriented-preference-optimization"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "query-routing",
+      "weight": 1,
+      "papers": [
+        "dfa-rag-conversational-semantic-router-with-definite-finite-automaton"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "rag-pipeline-design",
+      "weight": 1,
+      "papers": [
+        "dfa-rag-conversational-semantic-router-with-definite-finite-automaton"
+      ]
+    },
+    {
+      "source": "dialogue-policy",
+      "target": "safety-guardrails",
+      "weight": 1,
+      "papers": [
+        "script-based-dialog-policy-planning-for-an-ai-therapist"
+      ]
+    },
+    {
+      "source": "dialogue-state-tracking",
+      "target": "peft-lora",
+      "weight": 1,
+      "papers": [
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "source": "dialogue-state-tracking",
+      "target": "structure-induction-clustering",
+      "weight": 1,
+      "papers": [
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "embedding-models",
+      "weight": 1,
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "hybrid-retrieval",
+      "weight": 1,
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "multilingual-representation",
+      "weight": 1,
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "peft-lora",
+      "weight": 1,
+      "papers": [
+        "elt-elastic-looped-transformers-for-visual-generation"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "policy-gradient-rl",
+      "weight": 1,
+      "papers": [
+        "privileged-information-distillation-for-language-models"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "recursive-architectures",
+      "weight": 1,
+      "papers": [
+        "elt-elastic-looped-transformers-for-visual-generation"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "synthetic-data-generation",
+      "weight": 1,
+      "papers": [
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "source": "distillation",
+      "target": "text-classification-ner",
+      "weight": 1,
+      "papers": [
+        "gliner-generalist-model-for-named-entity-recognition"
+      ]
+    },
+    {
+      "source": "embedding-geometry",
+      "target": "embedding-models",
+      "weight": 1,
+      "papers": [
+        "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval"
+      ]
+    },
+    {
+      "source": "embedding-geometry",
+      "target": "long-context",
+      "weight": 1,
+      "papers": [
+        "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval"
+      ]
+    },
+    {
+      "source": "embedding-geometry",
+      "target": "structure-induction-clustering",
+      "weight": 1,
+      "papers": [
+        "lisa-llm-guided-semantic-aware-clustering-for-topic-modeling"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "hybrid-retrieval",
+      "weight": 1,
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "long-context",
+      "weight": 1,
+      "papers": [
+        "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "multilingual-representation",
+      "weight": 1,
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "structure-induction-clustering",
+      "weight": 1,
+      "papers": [
+        "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction"
+      ]
+    },
+    {
+      "source": "embedding-models",
+      "target": "transformer-internals",
+      "weight": 1,
+      "papers": [
+        "speech-and-language-processing-bert-chapter-jurafsky-martin"
+      ]
+    },
+    {
+      "source": "hybrid-retrieval",
+      "target": "multilingual-representation",
+      "weight": 1,
+      "papers": [
+        "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity"
+      ]
+    },
+    {
+      "source": "hybrid-retrieval",
+      "target": "supervised-finetuning",
+      "weight": 1,
+      "papers": [
+        "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph"
+      ]
+    },
+    {
+      "source": "hybrid-retrieval",
+      "target": "text-to-sql",
+      "weight": 1,
+      "papers": [
+        "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph"
+      ]
+    },
+    {
+      "source": "inference-time-scaling",
+      "target": "long-context",
+      "weight": 1,
+      "papers": [
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "source": "inference-time-scaling",
+      "target": "multi-agent-orchestration",
+      "weight": 1,
+      "papers": [
+        "a-survey-of-frontiers-in-llm-reasoning"
+      ]
+    },
+    {
+      "source": "inference-time-scaling",
+      "target": "recursive-architectures",
+      "weight": 1,
+      "papers": [
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "source": "inference-time-scaling",
+      "target": "tool-use",
+      "weight": 1,
+      "papers": [
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "source": "jailbreak-detection",
+      "target": "text-classification-ner",
+      "weight": 1,
+      "papers": [
+        "javelinguard-low-cost-transformer-architectures-for-llm-security"
+      ]
+    },
+    {
+      "source": "kv-cache-optimization",
+      "target": "long-context",
+      "weight": 1,
+      "papers": [
+        "refrag-rethinking-rag-based-decoding"
+      ]
+    },
+    {
+      "source": "kv-cache-optimization",
+      "target": "rag-pipeline-design",
+      "weight": 1,
+      "papers": [
+        "refrag-rethinking-rag-based-decoding"
+      ]
+    },
+    {
+      "source": "kv-cache-optimization",
+      "target": "speculative-decoding",
+      "weight": 1,
+      "papers": [
+        "arctic-inference-with-shift-parallelism"
+      ]
+    },
+    {
+      "source": "kv-cache-optimization",
+      "target": "transformer-internals",
+      "weight": 1,
+      "papers": [
+        "when-attention-sink-emerges-in-language-models"
+      ]
+    },
+    {
+      "source": "llm-as-judge",
+      "target": "rag-pipeline-design",
+      "weight": 1,
+      "papers": [
+        "ares-automated-evaluation-framework-for-rag-systems"
+      ]
+    },
+    {
+      "source": "long-context",
+      "target": "recursive-architectures",
+      "weight": 1,
+      "papers": [
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "source": "long-context",
+      "target": "serving-systems",
+      "weight": 1,
+      "papers": [
+        "selective-context-compressing-context-to-enhance-inference-efficiency"
+      ]
+    },
+    {
+      "source": "long-context",
+      "target": "tool-use",
+      "weight": 1,
+      "papers": [
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "source": "multi-agent-orchestration",
+      "target": "policy-gradient-rl",
+      "weight": 1,
+      "papers": [
+        "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning"
+      ]
+    },
+    {
+      "source": "multi-agent-orchestration",
+      "target": "reward-modeling",
+      "weight": 1,
+      "papers": [
+        "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning"
+      ]
+    },
+    {
+      "source": "multi-agent-orchestration",
+      "target": "self-improving-agents",
+      "weight": 1,
+      "papers": [
+        "agentic-harness-engineering"
+      ]
+    },
+    {
+      "source": "multi-agent-orchestration",
+      "target": "task-decomposition",
+      "weight": 1,
+      "papers": [
+        "thread-thinking-deeper-with-recursive-spawning"
+      ]
+    },
+    {
+      "source": "multi-agent-orchestration",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management"
+      ]
+    },
+    {
+      "source": "multi-turn-modeling",
+      "target": "preference-optimization",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "multi-turn-modeling",
+      "target": "reranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "multi-turn-modeling",
+      "target": "response-ranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "multi-turn-modeling",
+      "target": "structure-induction-clustering",
+      "weight": 1,
+      "papers": [
+        "multiturn-dialogue-generation-via-sentence-and-discourse-level-context"
+      ]
+    },
+    {
+      "source": "multi-turn-modeling",
+      "target": "synthetic-data-generation",
+      "weight": 1,
+      "papers": [
+        "multiturn-dialogue-generation-via-sentence-and-discourse-level-context"
+      ]
+    },
+    {
+      "source": "multilingual-representation",
+      "target": "transliteration",
+      "weight": 1,
+      "papers": [
+        "does-transliteration-help-multilingual-language-modeling"
+      ]
+    },
+    {
+      "source": "peft-lora",
+      "target": "prompt-optimization",
+      "weight": 1,
+      "papers": [
+        "prefix-tuning-optimizing-continuous-prompts-for-generation"
+      ]
+    },
+    {
+      "source": "peft-lora",
+      "target": "recursive-architectures",
+      "weight": 1,
+      "papers": [
+        "elt-elastic-looped-transformers-for-visual-generation"
+      ]
+    },
+    {
+      "source": "peft-lora",
+      "target": "structure-induction-clustering",
+      "weight": 1,
+      "papers": [
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "source": "peft-lora",
+      "target": "supervised-finetuning",
+      "weight": 1,
+      "papers": [
+        "t-few-few-shot-peft-is-better-and-cheaper-than-in-context-learning"
+      ]
+    },
+    {
+      "source": "peft-lora",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking"
+      ]
+    },
+    {
+      "source": "peft-lora",
+      "target": "transformer-internals",
+      "weight": 1,
+      "papers": [
+        "elt-elastic-looped-transformers-for-visual-generation"
+      ]
+    },
+    {
+      "source": "policy-gradient-rl",
+      "target": "reranking",
+      "weight": 1,
+      "papers": [
+        "rearank-reasoning-re-ranking-agent-via-reinforcement-learning"
+      ]
+    },
+    {
+      "source": "policy-gradient-rl",
+      "target": "reward-modeling",
+      "weight": 1,
+      "papers": [
+        "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning"
+      ]
+    },
+    {
+      "source": "policy-gradient-rl",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "gopo-goal-oriented-preference-optimization"
+      ]
+    },
+    {
+      "source": "preference-optimization",
+      "target": "reranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "preference-optimization",
+      "target": "response-ranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "preference-optimization",
+      "target": "reward-modeling",
+      "weight": 1,
+      "papers": [
+        "dpo-direct-preference-optimization"
+      ]
+    },
+    {
+      "source": "preference-optimization",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "gopo-goal-oriented-preference-optimization"
+      ]
+    },
+    {
+      "source": "rag-pipeline-design",
+      "target": "tabular-reasoning",
+      "weight": 1,
+      "papers": [
+        "beyond-extraction-contextualising-tabular-data-for-summarisation"
+      ]
+    },
+    {
+      "source": "recursive-architectures",
+      "target": "task-decomposition",
+      "weight": 1,
+      "papers": [
+        "hierarchical-reasoning-model-hrm"
+      ]
+    },
+    {
+      "source": "recursive-architectures",
+      "target": "tool-use",
+      "weight": 1,
+      "papers": [
+        "recursive-language-models-rlm"
+      ]
+    },
+    {
+      "source": "recursive-architectures",
+      "target": "transformer-internals",
+      "weight": 1,
+      "papers": [
+        "elt-elastic-looped-transformers-for-visual-generation"
+      ]
+    },
+    {
+      "source": "reranking",
+      "target": "response-ranking",
+      "weight": 1,
+      "papers": [
+        "dialogrpt-dialogue-response-ranking-with-human-feedback"
+      ]
+    },
+    {
+      "source": "safety-guardrails",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "script-based-dialog-policy-planning-for-an-ai-therapist"
+      ]
+    },
+    {
+      "source": "safety-guardrails",
+      "target": "text-classification-ner",
+      "weight": 1,
+      "papers": [
+        "javelinguard-low-cost-transformer-architectures-for-llm-security"
+      ]
+    },
+    {
+      "source": "structure-induction-clustering",
+      "target": "synthetic-data-generation",
+      "weight": 1,
+      "papers": [
+        "multiturn-dialogue-generation-via-sentence-and-discourse-level-context"
+      ]
+    },
+    {
+      "source": "supervised-finetuning",
+      "target": "synthetic-data-generation",
+      "weight": 1,
+      "papers": [
+        "tessy-teacher-student-cooperation-framework-for-sft-data"
+      ]
+    },
+    {
+      "source": "supervised-finetuning",
+      "target": "text-classification-ner",
+      "weight": 1,
+      "papers": [
+        "setfit-efficient-few-shot-learning-without-prompts"
+      ]
+    },
+    {
+      "source": "synthetic-data-generation",
+      "target": "task-oriented-dialogue",
+      "weight": 1,
+      "papers": [
+        "gauchobot-building-robust-tod-systems-from-scratch"
+      ]
+    },
+    {
+      "source": "task-decomposition",
+      "target": "tool-use",
+      "weight": 1,
+      "papers": [
+        "thread-thinking-deeper-with-recursive-spawning"
+      ]
+    },
+    {
+      "source": "text-classification-ner",
+      "target": "transformer-internals",
+      "weight": 1,
+      "papers": [
+        "gliner-generalist-model-for-named-entity-recognition"
+      ]
+    },
+    {
+      "source": "text-to-sql",
+      "target": "tool-use",
+      "weight": 1,
+      "papers": [
+        "next-generation-database-interfaces-a-survey-of-llm-based-text-to-sql"
+      ]
+    },
+    {
+      "source": "text-to-sql",
+      "target": "transformer-internals",
+      "weight": 1,
+      "papers": [
+        "sql-palm-improved-llm-adaptation-for-text-to-sql"
+      ]
+    }
+  ],
+  "paperConcepts": {
+    "agentic-harness-engineering": [
+      "agent-harness",
+      "multi-agent-orchestration",
+      "self-improving-agents"
+    ],
+    "dive-into-claude-code": [
+      "agent-harness",
+      "multi-agent-orchestration",
+      "tool-use"
+    ],
+    "meta-harness-end-to-end-optimization-of-model-harnesses": [
+      "agent-harness",
+      "prompt-optimization",
+      "self-improving-agents"
+    ],
+    "llms-get-lost-in-multi-turn-conversation": [
+      "benchmarking",
+      "multi-turn-modeling"
+    ],
+    "thread-thinking-deeper-with-recursive-spawning": [
+      "multi-agent-orchestration",
+      "task-decomposition",
+      "tool-use"
+    ],
+    "skillopt-executive-strategy-for-self-evolving-agent-skills": [
+      "agent-harness",
+      "prompt-optimization",
+      "self-improving-agents"
+    ],
+    "dfa-rag-conversational-semantic-router-with-definite-finite-automaton": [
+      "dialogue-policy",
+      "query-routing",
+      "rag-pipeline-design"
+    ],
+    "diaggpt-multi-agent-dialogue-system-with-automatic-topic-management": [
+      "dialogue-policy",
+      "multi-agent-orchestration",
+      "task-oriented-dialogue"
+    ],
+    "gopo-goal-oriented-preference-optimization": [
+      "dialogue-policy",
+      "policy-gradient-rl",
+      "preference-optimization",
+      "task-oriented-dialogue"
+    ],
+    "ppdpp-plug-and-play-dialogue-policy-planner": [
+      "dialogue-policy",
+      "policy-gradient-rl"
+    ],
+    "script-based-dialog-policy-planning-for-an-ai-therapist": [
+      "dialogue-policy",
+      "safety-guardrails",
+      "task-oriented-dialogue"
+    ],
+    "gauchobot-building-robust-tod-systems-from-scratch": [
+      "synthetic-data-generation",
+      "task-oriented-dialogue"
+    ],
+    "hiertod-task-oriented-dialogue-driven-by-hierarchical-goals": [
+      "dialogue-policy",
+      "dialogue-state-tracking",
+      "task-oriented-dialogue"
+    ],
+    "schema-graph-guided-prompt-for-multi-domain-dialogue-state-tracking": [
+      "dialogue-state-tracking",
+      "peft-lora",
+      "structure-induction-clustering",
+      "task-oriented-dialogue"
+    ],
+    "revisiting-clustering-for-efficient-unsupervised-dialogue-structure-induction": [
+      "embedding-models",
+      "structure-induction-clustering",
+      "task-oriented-dialogue"
+    ],
+    "dialogrpt-dialogue-response-ranking-with-human-feedback": [
+      "benchmarking",
+      "multi-turn-modeling",
+      "preference-optimization",
+      "reranking",
+      "response-ranking"
+    ],
+    "learning-under-concept-drift-a-review": [
+      "benchmarking",
+      "distribution-drift"
+    ],
+    "deepcontext-stateful-real-time-detection-of-multi-turn-adversarial-intent-drift-in-llms": [
+      "jailbreak-detection",
+      "safety-guardrails"
+    ],
+    "ares-automated-evaluation-framework-for-rag-systems": [
+      "benchmarking",
+      "llm-as-judge",
+      "rag-pipeline-design"
+    ],
+    "dolphin-unconfirmed": [],
+    "judging-llm-as-a-judge-with-mt-bench-and-chatbot-arena": [
+      "benchmarking",
+      "llm-as-judge"
+    ],
+    "race-reasoning-augmented-conversation-for-multi-turn-jailbreak-attacks": [
+      "jailbreak-detection",
+      "safety-guardrails"
+    ],
+    "javelinguard-low-cost-transformer-architectures-for-llm-security": [
+      "jailbreak-detection",
+      "safety-guardrails",
+      "text-classification-ner"
+    ],
+    "dopd-dual-on-policy-distillation": [
+      "distillation",
+      "transformer-internals"
+    ],
+    "privileged-information-distillation-for-language-models": [
+      "chain-of-thought",
+      "distillation",
+      "policy-gradient-rl",
+      "supervised-finetuning"
+    ],
+    "tessy-teacher-student-cooperation-framework-for-sft-data": [
+      "chain-of-thought",
+      "distillation",
+      "supervised-finetuning",
+      "synthetic-data-generation"
+    ],
+    "neural-text-degeneration-with-unlikelihood-training": [
+      "decoding-strategies",
+      "supervised-finetuning"
+    ],
+    "dlp-lora-efficient-task-specific-lora-fusion": [
+      "peft-lora"
+    ],
+    "prefix-tuning-optimizing-continuous-prompts-for-generation": [
+      "peft-lora",
+      "prompt-optimization"
+    ],
+    "t-few-few-shot-peft-is-better-and-cheaper-than-in-context-learning": [
+      "peft-lora",
+      "supervised-finetuning"
+    ],
+    "deepseekmath-pushing-the-limits-of-mathematical-reasoning": [
+      "chain-of-thought",
+      "policy-gradient-rl",
+      "supervised-finetuning"
+    ],
+    "dpo-direct-preference-optimization": [
+      "preference-optimization",
+      "reward-modeling"
+    ],
+    "a-practitioner-s-guide-to-multi-turn-agentic-reinforcement-learning": [
+      "multi-agent-orchestration",
+      "policy-gradient-rl",
+      "reward-modeling"
+    ],
+    "a-vision-researcher-s-guide-to-rl-ppo-grpo": [
+      "benchmarking",
+      "policy-gradient-rl",
+      "preference-optimization"
+    ],
+    "arctic-inference-with-shift-parallelism": [
+      "kv-cache-optimization",
+      "serving-systems",
+      "speculative-decoding"
+    ],
+    "when-attention-sink-emerges-in-language-models": [
+      "attention-mechanisms",
+      "kv-cache-optimization",
+      "transformer-internals"
+    ],
+    "sarathi-efficient-llm-inference-via-chunked-prefills": [
+      "kv-cache-optimization",
+      "serving-systems"
+    ],
+    "eagle-2-faster-inference-with-dynamic-draft-trees": [
+      "serving-systems",
+      "speculative-decoding"
+    ],
+    "eagle-3-scaling-up-inference-acceleration-via-training-time-test": [
+      "serving-systems",
+      "speculative-decoding"
+    ],
+    "eagle-speculative-sampling-requires-rethinking-feature-uncertainty": [
+      "serving-systems",
+      "speculative-decoding"
+    ],
+    "medusa-simple-llm-inference-acceleration-with-multiple-decoding-heads": [
+      "attention-mechanisms",
+      "serving-systems",
+      "speculative-decoding"
+    ],
+    "suffixdecoding-extreme-speculative-decoding-for-agentic-applications": [
+      "serving-systems",
+      "speculative-decoding"
+    ],
+    "elt-elastic-looped-transformers-for-visual-generation": [
+      "distillation",
+      "peft-lora",
+      "recursive-architectures",
+      "transformer-internals"
+    ],
+    "multiturn-dialogue-generation-via-sentence-and-discourse-level-context": [
+      "multi-turn-modeling",
+      "structure-induction-clustering",
+      "synthetic-data-generation"
+    ],
+    "massive-activations-in-large-language-models": [
+      "attention-mechanisms",
+      "transformer-internals"
+    ],
+    "speech-and-language-processing-bert-chapter-jurafsky-martin": [
+      "embedding-models",
+      "supervised-finetuning",
+      "transformer-internals"
+    ],
+    "gliner-generalist-model-for-named-entity-recognition": [
+      "distillation",
+      "text-classification-ner",
+      "transformer-internals"
+    ],
+    "llmlingua-compressing-prompts-for-accelerated-inference": [
+      "context-compression",
+      "serving-systems"
+    ],
+    "setfit-efficient-few-shot-learning-without-prompts": [
+      "contrastive-learning",
+      "embedding-models",
+      "supervised-finetuning",
+      "text-classification-ner"
+    ],
+    "lisa-llm-guided-semantic-aware-clustering-for-topic-modeling": [
+      "embedding-geometry",
+      "structure-induction-clustering"
+    ],
+    "does-transliteration-help-multilingual-language-modeling": [
+      "multilingual-representation",
+      "transliteration"
+    ],
+    "a-comparison-of-different-machine-transliteration-models": [
+      "benchmarking",
+      "transliteration"
+    ],
+    "m3-embedding-bge-m3-multi-linguality-multi-functionality-multi-granularity": [
+      "distillation",
+      "embedding-models",
+      "hybrid-retrieval",
+      "multilingual-representation"
+    ],
+    "fusion-functions-for-hybrid-retrieval-unconfirmed": [],
+    "sparseembed-learning-sparse-lexical-representations-with-contextual-embeddings": [
+      "dense-retrieval",
+      "embedding-models",
+      "sparse-retrieval"
+    ],
+    "rearank-reasoning-re-ranking-agent-via-reinforcement-learning": [
+      "policy-gradient-rl",
+      "reranking"
+    ],
+    "minimizing-flops-to-learn-efficient-sparse-representations": [
+      "context-compression",
+      "dense-retrieval",
+      "embedding-models",
+      "sparse-retrieval"
+    ],
+    "flashrag-a-modular-toolkit-for-rag-research": [
+      "benchmarking",
+      "rag-pipeline-design"
+    ],
+    "longrefiner-hierarchical-document-refinement-for-long-context-rag": [
+      "context-compression",
+      "long-context",
+      "rag-pipeline-design"
+    ],
+    "selective-context-compressing-context-to-enhance-inference-efficiency": [
+      "context-compression",
+      "long-context",
+      "serving-systems"
+    ],
+    "refrag-rethinking-rag-based-decoding": [
+      "attention-mechanisms",
+      "kv-cache-optimization",
+      "long-context",
+      "rag-pipeline-design"
+    ],
+    "contriever-unsupervised-dense-information-retrieval-with-contrastive-learning": [
+      "contrastive-learning",
+      "dense-retrieval",
+      "multilingual-representation"
+    ],
+    "making-retrieval-augmented-language-models-robust-to-irrelevant-context": [
+      "rag-pipeline-design"
+    ],
+    "skr-self-knowledge-guided-retrieval-augmentation": [
+      "query-routing",
+      "rag-pipeline-design"
+    ],
+    "hyde-precise-zero-shot-dense-retrieval-without-relevance-labels": [
+      "dense-retrieval",
+      "query-routing"
+    ],
+    "chain-of-thought-prompting-elicits-reasoning-in-llms": [
+      "chain-of-thought",
+      "supervised-finetuning"
+    ],
+    "dynasor-cot-reasoning-without-self-doubt-via-certainty-probing": [
+      "chain-of-thought",
+      "context-compression"
+    ],
+    "a-survey-of-frontiers-in-llm-reasoning": [
+      "chain-of-thought",
+      "inference-time-scaling",
+      "multi-agent-orchestration"
+    ],
+    "hierarchical-reasoning-model-hrm": [
+      "chain-of-thought",
+      "recursive-architectures",
+      "task-decomposition"
+    ],
+    "h-star-llm-driven-hybrid-sql-text-adaptive-reasoning-on-tables": [
+      "chain-of-thought",
+      "tabular-reasoning",
+      "text-to-sql"
+    ],
+    "recursive-language-models-rlm": [
+      "inference-time-scaling",
+      "long-context",
+      "recursive-architectures",
+      "tool-use"
+    ],
+    "supcl-seq-supervised-contrastive-learning-for-sequence-representations": [
+      "contrastive-learning",
+      "embedding-models",
+      "text-classification-ner"
+    ],
+    "supervised-contrastive-learning-supcon": [
+      "contrastive-learning",
+      "embedding-models",
+      "text-classification-ner"
+    ],
+    "pooling-and-semantic-shift-challenges-in-long-text-embedding-and-retrieval": [
+      "embedding-geometry",
+      "embedding-models",
+      "long-context"
+    ],
+    "blendsql-a-scalable-dialect-for-unifying-hybrid-question-answering": [
+      "tabular-reasoning",
+      "text-to-sql"
+    ],
+    "weaver-interweaving-sql-and-llm-for-table-reasoning": [
+      "tabular-reasoning",
+      "text-to-sql"
+    ],
+    "beyond-extraction-contextualising-tabular-data-for-summarisation": [
+      "rag-pipeline-design",
+      "tabular-reasoning"
+    ],
+    "dcg-sql-enhancing-in-context-learning-with-deep-contextual-schema-link-graph": [
+      "hybrid-retrieval",
+      "supervised-finetuning",
+      "text-to-sql"
+    ],
+    "sql-palm-improved-llm-adaptation-for-text-to-sql": [
+      "supervised-finetuning",
+      "text-to-sql",
+      "transformer-internals"
+    ],
+    "next-generation-database-interfaces-a-survey-of-llm-based-text-to-sql": [
+      "text-to-sql",
+      "tool-use"
+    ]
+  },
+  "orphans": [
+    "decoding-strategies",
+    "distribution-drift",
+    "embedding-geometry",
+    "hybrid-retrieval",
+    "inference-time-scaling",
+    "multilingual-representation",
+    "peft-lora",
+    "recursive-architectures",
+    "reranking",
+    "response-ranking",
+    "reward-modeling",
+    "synthetic-data-generation",
+    "task-decomposition",
+    "transliteration"
+  ],
+  "stats": {
+    "papers": 80,
+    "rawTags": 279,
+    "concepts": 49,
+    "edges": 147,
+    "edgesAtDefault": 39,
+    "unmappedTags": [],
+    "zeroConceptPapers": [
+      "dolphin-unconfirmed",
+      "fusion-functions-for-hybrid-retrieval-unconfirmed"
+    ]
+  }
+}

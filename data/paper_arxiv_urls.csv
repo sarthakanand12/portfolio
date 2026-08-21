@@ -1,0 +1,81 @@
+title,path,url
+Agentic Harness Engineering,Agents_and_Orchestration/agentic harness engg.pdf,https://arxiv.org/abs/2604.25850
+Dive into Claude Code,Agents_and_Orchestration/dive into claude code architecture.pdf,https://arxiv.org/abs/2604.14228
+Meta-Harness: End-to-End Optimization of Model Harnesses,Agents_and_Orchestration/meta harness.pdf,https://arxiv.org/abs/2603.28052
+LLMs Get Lost in Multi-Turn Conversation,Agents_and_Orchestration/multi turn conversation.pdf,https://arxiv.org/abs/2505.06120
+THREAD: Thinking Deeper with Recursive Spawning,Agents_and_Orchestration/recursive spawning for deeper thinking.pdf,https://arxiv.org/abs/2405.17402
+SkillOpt: Executive Strategy for Self-Evolving Agent Skills,Agents_and_Orchestration/skillopt self evolving agent skills.pdf,https://arxiv.org/abs/2605.23904
+DFA-RAG: Conversational Semantic Router with Definite Finite Automaton,Dialogue_Systems/Dialogue_Policy_Planning/dfa rag conversational semantic router.pdf,https://arxiv.org/abs/2402.04411
+DiagGPT: Multi-Agent Dialogue System with Automatic Topic Management,Dialogue_Systems/Dialogue_Policy_Planning/diaggpt multi agent tod.pdf,https://arxiv.org/abs/2308.08043
+GOPO: Goal-Oriented Preference Optimization,Dialogue_Systems/Dialogue_Policy_Planning/gopo goal oriented preference optimization.pdf,https://arxiv.org/abs/2602.15854
+PPDPP: Plug-and-Play Dialogue Policy Planner,Dialogue_Systems/Dialogue_Policy_Planning/ppdpp plug and play policy planner.pdf,https://arxiv.org/abs/2311.00262
+Script-Based Dialog Policy Planning for an AI Therapist,Dialogue_Systems/Dialogue_Policy_Planning/script based dialog policy ai therapist.pdf,https://arxiv.org/abs/2412.15242
+Gauchobot: Building Robust TOD Systems from Scratch,Dialogue_Systems/Task_Oriented_Dialogue_Systems/gauchobot tod system from scratch.pdf,https://sites.cs.ucsb.edu/~xyan/papers/alexa22-gauchobot.pdf
+HierTOD: Task-Oriented Dialogue Driven by Hierarchical Goals,Dialogue_Systems/Task_Oriented_Dialogue_Systems/hiertod hierarchical goal tod.pdf,https://arxiv.org/abs/2411.07152
+Schema Graph-Guided Prompt for Multi-Domain Dialogue State Tracking,Dialogue_Systems/Task_Oriented_Dialogue_Systems/schema graph dialogue state tracking.pdf,https://arxiv.org/abs/2311.06345
+Revisiting Clustering for Efficient Unsupervised Dialogue Structure Induction,Dialogue_Systems/Dialogue_Evaluation_and_Structure/clustering for dialogue structure induction.pdf,
+DialogRPT: Dialogue Response Ranking with Human Feedback,Dialogue_Systems/Dialogue_Evaluation_and_Structure/dialogrpt response ranking feedback.pdf,https://arxiv.org/abs/2009.06978
+Learning under Concept Drift: A Review,Drift_and_Distribution_Shift/concept drift survery paper.pdf,https://arxiv.org/abs/2004.05785
+DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs,Evaluation_and_Safety/Safety_and_Guardrails/drift detection.pdf,https://arxiv.org/abs/2602.16935
+ARES: Automated Evaluation Framework for RAG Systems,Evaluation_and_Safety/Evaluation/ares evaluation.pdf,https://arxiv.org/abs/2311.09476
+Dolphin: Document Image Parsing via Heterogeneous Anchor Prompting,Evaluation_and_Safety/Evaluation/dolphin llm.pdf,https://arxiv.org/abs/2505.14059
+Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena,Evaluation_and_Safety/Evaluation/llm as judge.pdf,https://arxiv.org/abs/2306.05685
+RACE: Reasoning-Augmented Conversation for Multi-Turn Jailbreak Attacks,Evaluation_and_Safety/Safety_and_Guardrails/jailbreak using attack sm.pdf,https://arxiv.org/abs/2502.11054
+JavelinGuard: Low-Cost Transformer Architectures for LLM Security,Evaluation_and_Safety/Safety_and_Guardrails/javelin guard.pdf,https://arxiv.org/abs/2506.07330
+DOPD: Dual On-Policy Distillation,Finetuning_and_Alignment/Distillation_and_SFT/dopd dual on policy distillation.pdf,https://arxiv.org/abs/2606.30626
+Privileged Information Distillation for Language Models,Finetuning_and_Alignment/Distillation_and_SFT/privileged information distillation for llms.pdf,https://arxiv.org/abs/2602.04942
+TESSY: Teacher-Student Cooperation Framework for SFT Data,Finetuning_and_Alignment/Distillation_and_SFT/teacher student sft.pdf,https://arxiv.org/abs/2604.14164
+Neural Text Degeneration with Unlikelihood Training,Finetuning_and_Alignment/Distillation_and_SFT/unlikelihood training.pdf,https://arxiv.org/abs/1908.04319
+DLP-LoRA: Efficient Task-Specific LoRA Fusion,Finetuning_and_Alignment/PEFT/dlp lora.pdf,https://arxiv.org/abs/2410.01497
+Prefix-Tuning: Optimizing Continuous Prompts for Generation,Finetuning_and_Alignment/PEFT/prefix tuning.pdf,https://arxiv.org/abs/2101.00190
+T-Few: Few-Shot PEFT is Better and Cheaper than In-Context Learning,Finetuning_and_Alignment/PEFT/t-few.pdf,https://arxiv.org/abs/2205.05638
+DeepSeekMath: Pushing the Limits of Mathematical Reasoning,Finetuning_and_Alignment/RLHF_and_RL/deepseek math grpo.pdf,https://arxiv.org/abs/2402.03300
+DPO: Direct Preference Optimization,Finetuning_and_Alignment/RLHF_and_RL/dpo direct preference optimization.pdf,https://arxiv.org/abs/2305.18290
+A Practitioner's Guide to Multi-Turn Agentic Reinforcement Learning,Finetuning_and_Alignment/RLHF_and_RL/multi turn reinforcement learnign.pdf,https://arxiv.org/abs/2510.01132
+A Vision Researcher's Guide to RL: PPO & GRPO,Finetuning_and_Alignment/RLHF_and_RL/rlhf introductory.pdf,https://yugeten.github.io/posts/2025/01/ppogrpo/
+Arctic Inference with Shift Parallelism,Inference_Optimization/KV_Cache_and_Prefill/arctic inference.pdf,https://arxiv.org/abs/2507.11830
+When Attention Sink Emerges in Language Models,Inference_Optimization/KV_Cache_and_Prefill/attention sink.pdf,https://arxiv.org/abs/2410.10781
+Sarathi: Efficient LLM Inference via Chunked Prefills,Inference_Optimization/KV_Cache_and_Prefill/chunkedprefill.pdf,https://arxiv.org/abs/2308.16369
+EAGLE-2: Faster Inference with Dynamic Draft Trees,Inference_Optimization/Speculative_Decoding/eagle 2 decoding.pdf,https://arxiv.org/abs/2406.16858
+EAGLE-3: Scaling Up Inference Acceleration via Training-Time Test,Inference_Optimization/Speculative_Decoding/eagle 3 decoding.pdf,https://arxiv.org/abs/2503.01840
+EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty,Inference_Optimization/Speculative_Decoding/eagle decoding.pdf,https://arxiv.org/abs/2401.15077
+Medusa: Simple LLM Inference Acceleration with Multiple Decoding Heads,Inference_Optimization/Speculative_Decoding/medusa inference acceleration.pdf,https://arxiv.org/abs/2401.10774
+SuffixDecoding: Extreme Speculative Decoding for Agentic Applications,Inference_Optimization/Speculative_Decoding/suffixdecoding.pdf,https://arxiv.org/abs/2411.04975
+ELT: Elastic Looped Transformers for Visual Generation,LLM_Architecture/Attention_Mechanisms/elastic looped transformer.pdf,https://arxiv.org/abs/2604.09168
+Multiturn Dialogue Generation via Sentence- and Discourse-Level Context,LLM_Architecture/Attention_Mechanisms/multi turn attention.pdf,https://pmc.ncbi.nlm.nih.gov/articles/PMC9701771/
+Massive Activations in Large Language Models,LLM_Architecture/Model_Internals/large activation in llm.pdf,https://arxiv.org/abs/2402.17762
+Speech and Language Processing — BERT chapter (Jurafsky & Martin),LLM_Architecture/Model_Internals/stanfordbasics.pdf,https://web.stanford.edu/~jurafsky/slp3/11.pdf
+GLiNER: Generalist Model for Named Entity Recognition,NLP_Applications/NER_and_Classification/gliner.pdf,https://arxiv.org/abs/2311.08526
+LLMLingua: Compressing Prompts for Accelerated Inference,NLP_Applications/NER_and_Classification/microsoft lingua.pdf,https://arxiv.org/abs/2310.05736
+SetFit: Efficient Few-Shot Learning Without Prompts,NLP_Applications/NER_and_Classification/setfit paper.pdf,https://arxiv.org/abs/2209.11055
+LiSA: LLM-Guided Semantic-Aware Clustering for Topic Modeling,NLP_Applications/Topic_Modeling/llm guided semantic clustering topic modeling.pdf,https://aclanthology.org/2025.acl-long.902.pdf
+Does Transliteration Help Multilingual Language Modeling?,NLP_Applications/Transliteration_and_Multilingual/Transliteration Contrastive Loss.pdf,https://arxiv.org/abs/2201.12501
+A Comparison of Different Machine Transliteration Models,NLP_Applications/Transliteration_and_Multilingual/survey transliteration.pdf,https://arxiv.org/abs/1110.1391
+"M3-Embedding (BGE-M3): Multi-Linguality, Multi-Functionality, Multi-Granularity",RAG_and_Retrieval/Hybrid_Search_and_Reranking/bgem3 paper.pdf,https://arxiv.org/abs/2402.03216
+Fusion functions for hybrid retrieval,RAG_and_Retrieval/Hybrid_Search_and_Reranking/fusion functions for hybrid retrieval.pdf,https://arxiv.org/abs/2210.11934
+SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings,RAG_and_Retrieval/Hybrid_Search_and_Reranking/google sparse embed.pdf,https://dl.acm.org/doi/10.1145/3539618.3592065
+ReaRank: Reasoning Re-ranking Agent via Reinforcement Learning,RAG_and_Retrieval/Hybrid_Search_and_Reranking/rerank llm.pdf,https://arxiv.org/abs/2505.20046
+Minimizing FLOPs to Learn Efficient Sparse Representations,RAG_and_Retrieval/Hybrid_Search_and_Reranking/sparseembed.pdf,https://arxiv.org/abs/2004.05665
+FlashRAG: A Modular Toolkit for RAG Research,RAG_and_Retrieval/RAG_Pipelines/flashrag.pdf,https://arxiv.org/abs/2405.13576
+LongRefiner: Hierarchical Document Refinement for Long-Context RAG,RAG_and_Retrieval/RAG_Pipelines/heirachial refinement rag.pdf,https://arxiv.org/abs/2505.10413
+Selective Context: Compressing Context to Enhance Inference Efficiency,RAG_and_Retrieval/RAG_Pipelines/refiner rag.pdf,https://arxiv.org/abs/2310.06201
+REFRAG: Rethinking RAG-Based Decoding,RAG_and_Retrieval/RAG_Pipelines/refrag.pdf,https://arxiv.org/abs/2509.01092
+Contriever: Unsupervised Dense Information Retrieval with Contrastive Learning,RAG_and_Retrieval/Retrieval_Methods/contriever meta.pdf,https://arxiv.org/abs/2112.09118
+Making Retrieval-Augmented Language Models Robust to Irrelevant Context,RAG_and_Retrieval/Retrieval_Methods/retrobust.pdf,https://arxiv.org/abs/2310.01558
+SKR: Self-Knowledge Guided Retrieval Augmentation,RAG_and_Retrieval/Retrieval_Methods/selfknowledge retrieval llm.pdf,https://arxiv.org/abs/2310.05002
+HyDE: Precise Zero-Shot Dense Retrieval without Relevance Labels,RAG_and_Retrieval/Retrieval_Methods/zero shot dense retrieval.pdf,https://arxiv.org/abs/2212.10496
+Chain-of-Thought Prompting Elicits Reasoning in LLMs,Reasoning/Chain_of_Thought/chain of thought paper.pdf,https://arxiv.org/abs/2201.11903
+Dynasor-CoT: Reasoning Without Self-Doubt via Certainty Probing,Reasoning/Chain_of_Thought/dynasor cot.pdf,https://openreview.net/pdf?id=wpK4IMJfdX
+A Survey of Frontiers in LLM Reasoning,Reasoning/Chain_of_Thought/surveypaper llm reasoning.pdf,https://arxiv.org/abs/2504.09037
+Hierarchical Reasoning Model (HRM),Reasoning/Hierarchical_and_Recursive/hirarchial reasoning.pdf,https://arxiv.org/abs/2506.21734
+H-STAR: LLM-Driven Hybrid SQL-Text Adaptive Reasoning on Tables,Text2SQL_and_Tabular/Tabular_Reasoning/hstar.pdf,https://arxiv.org/abs/2407.05952
+Recursive Language Models (RLM),Reasoning/Hierarchical_and_Recursive/recursive lm.pdf,https://arxiv.org/abs/2512.24601
+SupCL-Seq: Supervised Contrastive Learning for Sequence Representations,Representation_Learning/Contrastive_Learning/supcl seq contrastive sequence representation.pdf,https://arxiv.org/abs/2109.07424
+Supervised Contrastive Learning (SupCon),Representation_Learning/Contrastive_Learning/supcon supervised contrastive learning.pdf,https://arxiv.org/abs/2004.11362
+Pooling and Semantic Shift: Challenges in Long Text Embedding and Retrieval,Representation_Learning/Embedding_Geometry/pooling and semantic shift long text embedding.pdf,https://arxiv.org/abs/2603.21437
+BlendSQL: A Scalable Dialect for Unifying Hybrid Question Answering,Text2SQL_and_Tabular/Tabular_Reasoning/blendsql.pdf,https://arxiv.org/abs/2402.17882
+Weaver: Interweaving SQL and LLM for Table Reasoning,Text2SQL_and_Tabular/Tabular_Reasoning/table reasoning.pdf,https://arxiv.org/abs/2505.18961
+Beyond Extraction: Contextualising Tabular Data for Summarisation,Text2SQL_and_Tabular/Tabular_Reasoning/tabular data into lm.pdf,https://arxiv.org/abs/2401.02333
+DCG-SQL: Enhancing In-Context Learning with Deep Contextual Schema Link Graph,Text2SQL_and_Tabular/Text2SQL/graph text2sql.pdf,https://arxiv.org/abs/2505.19956
+SQL-PaLM: Improved LLM Adaptation for Text-to-SQL,Text2SQL_and_Tabular/Text2SQL/palm text2sql.pdf,https://arxiv.org/abs/2306.00739
+Next-Generation Database Interfaces: A Survey of LLM-based Text-to-SQL,Text2SQL_and_Tabular/Text2SQL/text2sql survey.pdf,https://arxiv.org/abs/2406.08426

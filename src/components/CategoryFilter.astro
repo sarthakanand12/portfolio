@@ -1,0 +1,44 @@
+---
+/**
+ * Category chips for the courses / certificates lists.
+ *
+ * Multi-select, and rendered as one butted-together segmented control rather
+ * than spaced pills — the chips read as a single switch that way. The list is
+ * derived from the entries, so a new `category` value in content.config.ts
+ * shows up here with no change to this file.
+ *
+ * Zero-JS by default: with no script, every chip is on and every item shows.
+ * The inline script below is ~500 bytes and hydrates nothing.
+ */
+interface Props {
+  /** Filter group id. Must match the `data-filter-group` on the item list. */
+  group: string;
+  /** Category values in display order, with a count each. */
+  categories: { value: string; count: number }[];
+}
+const { group, categories } = Astro.props;
+---
+
+{
+  categories.length > 1 && (
+    <div
+      class="catfilter inline-flex overflow-hidden rounded-[6px] border border-paper-300"
+      role="group"
+      aria-label="Filter by category"
+      data-filter-for={group}
+    >
+      {categories.map((c) => (
+        <button
+          type="button"
+          class="catchip"
+          data-category={c.value}
+          aria-pressed="true"
+          title={`${c.count} in ${c.value}`}
+        >
+          {c.value}
+          <span class="tabular catchip-n">{c.count}</span>
+        </button>
+      ))}
+    </div>
+  )
+}

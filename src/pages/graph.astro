@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Graph from '../components/Graph';
+import { allPapers, allProjects, graphData } from '../lib/data';
+
+const papers = await allPapers();
+const projects = await allProjects();
+
+// Only what the island needs — titles for the inspector, nothing more.
+const paperMeta = Object.fromEntries(
+  papers.map((p) => [p.slug, { slug: p.slug, title: p.data.title }])
+);
+const projectMeta = projects.map((p) => ({
+  slug: p.slug,
+  title: p.data.title,
+  concepts: p.concepts,
+}));
+---
+
+<Base
+  title="Knowledge graph"
+  description={`${graphData.nodes.length} canonical concepts, ${graphData.stats.edgesAtDefault} edges.`}
+>
+  <header class="rise flex flex-wrap items-end justify-between gap-x-6 gap-y-2 pt-10 pb-5">
+    <h1 class="font-serif text-[2.2rem] font-medium">Knowledge graph</h1>
+    <p class="text-[12.5px] text-ink-400">
+      <span class="tabular text-ink-700">{graphData.nodes.length}</span> concepts
+      <span class="mx-1.5 text-paper-400">·</span>
+      <span class="tabular text-ink-700">{graphData.stats.edgesAtDefault}</span> edges
+    </p>
+  </header>
+
+  {/* The only hydrated island on the site. Threshold is fixed at the default
+      backbone — the weight slider and layer toggle are gone. (user-review.md) */}
+  <Graph
+    client:only="preact"
+    nodes={graphData.nodes}
+    edges={graphData.edges}
+    papers={paperMeta}
+    projects={projectMeta}
+    defaultMinWeight={graphData.defaultMinWeight}
+  />
+</Base>

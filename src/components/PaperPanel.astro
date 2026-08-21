@@ -1,0 +1,291 @@
+---
+import Icon from './Icon.astro';
+
+/**
+ * Slide-in info card for a paper, opened from a row on /research.
+ *
+ * One DOM node reused for all 80 rows — it renders from the clicked row's
+ * `data-panel` payload rather than existing 80 times. The whole card takes an
+ * accent from the paper's read status.
+ */
+---
+
+<div
+  id="panel-scrim"
+  class="fixed inset-0 z-40 hidden bg-ink-900/25 opacity-0 transition-opacity duration-200"
+  aria-hidden="true"
+>
+</div>
+
+<aside
+  id="paper-panel"
+  class="ppanel fixed top-0 right-0 z-50 hidden h-full w-full max-w-[420px] translate-x-full flex-col overflow-y-auto border-l shadow-xl transition-transform duration-200 ease-out"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="panel-title"
+  tabindex="-1"
+>
+  {/* Header carries the status accent — the card's whole tint follows it. */}
+  <header class="ppanel-head sticky top-0 z-10 px-5 pt-4 pb-3.5">
+    <div class="flex items-start justify-between gap-3">
+      <span id="panel-status" class="chip chip-status capitalize"></span>
+      <button
+        id="panel-close"
+        type="button"
+        aria-label="Close"
+        class="grid size-7 shrink-0 place-items-center rounded-[4px] border border-paper-300 bg-paper-50 text-ink-400 transition-colors hover:border-clay-600 hover:text-clay-600"
+      >
+        <span aria-hidden="true" class="text-[15px] leading-none">&times;</span>
+      </button>
+    </div>
+
+    <h2 id="panel-title" class="mt-2.5 text-[16px] leading-snug font-medium text-ink-900"></h2>
+    <p id="panel-meta" class="mt-1.5 text-[11.5px] text-ink-400"></p>
+
+    <div id="panel-links" class="mt-3 flex flex-wrap items-center gap-1.5"></div>
+  </header>
+
+  <div class="flex-1 space-y-5 px-5 pt-4 pb-8">
+    <section id="panel-tags-wrap">
+      <p class="eyebrow flex items-center gap-1.5">
+        <Icon name="tag" size={12} /> Raw tags
+      </p>
+      <ul id="panel-tags" class="mt-2 flex flex-wrap gap-1.5"></ul>
+    </section>
+
+    <section id="panel-concepts-wrap" class="border-t border-paper-300 pt-4">
+      <p class="eyebrow flex items-center gap-1.5">
+        <Icon name="concept" size={12} /> Concepts
+      </p>
+      <ul id="panel-concepts" class="mt-2 flex flex-wrap gap-1.5"></ul>
+    </section>
+
+    <section id="panel-related-wrap" class="border-t border-paper-300 pt-4">
+      <p class="eyebrow">Shared concepts</p>
+      <ul id="panel-related" class="mt-2 space-y-2.5"></ul>
+    </section>
+
+    <section id="panel-projects-wrap" class="border-t border-paper-300 pt-4">
+      <p class="eyebrow flex items-center gap-1.5">
+        <Icon name="backlink" size={12} /> Fed into
+      </p>
+      <ul id="panel-projects" class="mt-2 space-y-2"></ul>
+    </section>
+
+    <section id="panel-blogs-wrap" class="border-t border-paper-300 pt-4">
+      <p class="eyebrow flex items-center gap-1.5">
+        <Icon name="note" size={12} /> Blogs
+      </p>
+      <ul id="panel-blogs" class="mt-2 space-y-2"></ul>
+      <p id="panel-blogs-empty" class="mt-2 hidden text-[12px] text-ink-400">
+        Nothing written about this one yet.
+      </p>
+    </section>
+
+  </div>
+</aside>
+
+<script is:inline>
+  (() => {
+    const panel = document.getElementById('paper-panel');
+    const scrim = document.getElementById('panel-scrim');
+    const list = document.getElementById('list');
+    if (!panel || !scrim || !list) return;
+
+    const el = (id) => document.getElementById(id);
+    const STATUSES = ['noted', 'read', 'skimmed'];
+    let lastFocus = null;
+
+    const rowBySlug = (slug) =>
+      Array.from(list.children).find((r) => r.dataset.slug === slug) || null;
+
+    /** Build a <li> containing an anchor, the shape used by most sections. */
+    function linkItem(href, label, sub, cls) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = href;
+      a.className = cls || 'group block';
+      const strong = document.createElement('span');
+      strong.className =
+        'block text-[13px] leading-snug text-ink-700 group-hover:text-clay-600';
+      strong.textContent = label;
+      a.appendChild(strong);
+      if (sub) {
+        const s = document.createElement('span');
+        s.className = 'mt-0.5 block text-[11px] text-ink-400';
+        s.textContent = sub;
+        a.appendChild(s);
+      }
+      li.appendChild(a);
+      return li;
+    }
+
+    function fill(d) {
+      // Accent the whole card by read status.
+      for (const s of STATUSES) panel.classList.remove('ppanel-' + s);
+      panel.classList.add('ppanel-' + d.status);
+
+      el('panel-status').textContent = d.status;
+      el('panel-title').textContent = d.title;
+      el('panel-meta').textContent = [d.crumb, d.year, d.venue]
+        .filter(Boolean)
+        .join(' · ');
+
+      // Links row: external link, plus the re-tagging flag when it applies.
+      const links = el('panel-links');
+      links.textContent = '';
+      if (d.url) {
+        const a = document.createElement('a');
+        a.href = d.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'chip';
+        a.textContent = d.arxivId ? 'arXiv:' + d.arxivId : 'link';
+        links.appendChild(a);
+      }
+      if (d.unconfirmed) {
+        const f = document.createElement('span');
+        f.className = 'chip chip-flag';
+        f.textContent = 'needs re-tagging';
+        links.appendChild(f);
+      }
+
+      const tags = el('panel-tags');
+      tags.textContent = '';
+      for (const t of d.tags) {
+        const li = document.createElement('li');
+        li.className = 'chip';
+        li.textContent = t; // verbatim, never normalised
+        tags.appendChild(li);
+      }
+      el('panel-tags-wrap').hidden = d.tags.length === 0;
+
+      const concepts = el('panel-concepts');
+      concepts.textContent = '';
+      for (const c of d.concepts) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '/graph/?c=' + encodeURIComponent(c.id);
+        a.className = 'chip chip-concept';
+        a.textContent = c.label;
+        li.appendChild(a);
+        concepts.appendChild(li);
+      }
+      el('panel-concepts-wrap').hidden = d.concepts.length === 0;
+
+      const related = el('panel-related');
+      related.textContent = '';
+      for (const r of d.related) {
+        // Swap the panel to that paper rather than navigating — the row is
+        // already on this page, so its payload is too.
+        const li = linkItem(
+          '#',
+          r.title,
+          r.shared.slice(0, 3).join(', ') + ' · ' + r.overlap + ' shared'
+        );
+        const a = li.querySelector('a');
+        a.dataset.jump = r.slug;
+        related.appendChild(li);
+      }
+      el('panel-related-wrap').hidden = d.related.length === 0;
+
+      const projects = el('panel-projects');
+      projects.textContent = '';
+      for (const p of d.projects) {
+        projects.appendChild(
+          linkItem(
+            '/projects/' + p.slug + '/',
+            p.title,
+            null,
+            'backlink w-full no-underline hover:border-moss-700/55'
+          )
+        );
+      }
+      el('panel-projects-wrap').hidden = d.projects.length === 0;
+
+      const blogs = el('panel-blogs');
+      blogs.textContent = '';
+      for (const b of d.blogs) {
+        blogs.appendChild(linkItem('/blogs/' + b.slug + '/', b.title, null));
+      }
+      el('panel-blogs-empty').classList.toggle('hidden', d.blogs.length > 0);
+    }
+
+    function open(row) {
+      let payload;
+      try {
+        payload = JSON.parse(row.dataset.panel);
+      } catch {
+        return; // malformed payload: fall through to the row's own link
+      }
+      fill(payload);
+      lastFocus = document.activeElement;
+      panel.classList.remove('hidden');
+      scrim.classList.remove('hidden');
+      panel.classList.add('flex');
+      // Next frame, so the transition has a start state to animate from.
+      requestAnimationFrame(() => {
+        panel.classList.remove('translate-x-full');
+        scrim.classList.remove('opacity-0');
+      });
+      panel.focus();
+    }
+
+    function close() {
+      panel.classList.add('translate-x-full');
+      scrim.classList.add('opacity-0');
+      const done = () => {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+        scrim.classList.add('hidden');
+      };
+      // Match the 200ms transition; falls back cleanly if it never fires.
+      setTimeout(done, 210);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    list.addEventListener('click', (e) => {
+      // Let modifier-clicks and real links (repo, arXiv, tags) behave normally.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      const row = e.target.closest('[data-panel]');
+      if (!row) return;
+      const link = e.target.closest('a');
+      if (link && !row.contains(link)) return;
+      if (link && link.target === '_blank') return;
+      e.preventDefault();
+      open(row);
+    });
+
+    // Related-paper links swap the panel contents in place.
+    panel.addEventListener('click', (e) => {
+      const jump = e.target.closest('[data-jump]');
+      if (!jump) return;
+      e.preventDefault();
+      const row = rowBySlug(jump.dataset.jump);
+      if (!row) return;
+      try {
+        fill(JSON.parse(row.dataset.panel));
+        panel.scrollTop = 0;
+      } catch {
+        /* malformed payload: leave the panel as it is */
+      }
+    });
+
+    scrim.addEventListener('click', close);
+    el('panel-close').addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.classList.contains('hidden')) close();
+    });
+
+    // ?paper=<slug> deep link — used by the graph, blog posts and project
+    // pages now that the standalone paper endpoint is gone.
+    const wanted = new URLSearchParams(location.search).get('paper');
+    if (wanted) {
+      const row = rowBySlug(wanted);
+      if (row) {
+        open(row);
+        row.scrollIntoView({ block: 'center' });
+      }
+    }
+  })();
+</script>

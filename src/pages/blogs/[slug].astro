@@ -1,0 +1,59 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { allBlogs, allPapers } from '../../lib/data';
+
+export async function getStaticPaths() {
+  const posts = await allBlogs();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post.entry);
+
+// Papers this post writes about, so the link runs both ways.
+const papers = await allPapers();
+const cited = post.data.papers
+  .map((slug: string) => papers.find((p) => p.slug === slug))
+  .filter(Boolean);
+---
+
+<Base title={post.data.title} description={post.data.summary ?? undefined}>
+  <nav class="pt-8 text-[12px] text-ink-400" aria-label="Breadcrumb">
+    <a href="/blogs/" class="hover:text-clay-600">Blogs</a>
+  </nav>
+
+  <header class="pt-4 pb-6">
+    <h1 class="max-w-3xl text-[1.75rem] leading-tight font-medium">{post.data.title}</h1>
+    <p class="tabular mt-2 text-[12.5px] text-ink-400">
+      {post.data.date.toISOString().slice(0, 10)}
+    </p>
+  </header>
+
+  <div class="prose-note max-w-2xl pb-4">
+    <Content />
+  </div>
+
+  {
+    cited.length > 0 && (
+      <section class="mt-8 max-w-2xl border-t border-paper-300 pt-5 pb-6">
+        <p class="eyebrow flex items-center gap-1.5">
+          <Icon name="backlink" size={12} /> Papers in this post
+        </p>
+        <ul class="mt-2.5 space-y-2">
+          {cited.map((p: any) => (
+            <li>
+              <a
+                href={`/research/?paper=${p.slug}`}
+                class="text-[13px] text-ink-700 hover:text-clay-600"
+              >
+                {p.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</Base>

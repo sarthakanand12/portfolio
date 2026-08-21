@@ -1,0 +1,577 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Design tokens.
+
+   Ground rule: no white anywhere. The page sits on a warm paper tint and
+   every surface is a step off that, not a step toward white. Accents are
+   desaturated — ink, clay, moss, ochre — so nothing competes with content.
+   ───────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Paper — warm yellowish grounds, darkest to lightest */
+  --color-paper-50:  #faf7ee;   /* raised surface (cards) */
+  --color-paper-100: #f6f1e3;   /* page background */
+  --color-paper-200: #efe8d6;   /* inset / hover */
+  --color-paper-300: #e5dcc5;   /* borders, hairlines */
+  --color-paper-400: #d3c8ab;   /* strong border */
+
+  /* Ink — text and dark UI */
+  --color-ink-900: #241f18;     /* headings */
+  --color-ink-700: #3d362b;     /* body */
+  --color-ink-500: #6b6152;     /* secondary */
+  --color-ink-400: #8a7f6d;     /* muted / meta */
+
+  /* Accents — one per semantic role, all desaturated */
+  --color-clay-600: #9c5b3f;    /* primary accent, links */
+  --color-clay-100: #f0dfd4;
+  --color-moss-700: #4f6146;    /* the backlink green (papers ↔ projects) */
+  --color-moss-600: #5d7253;
+  --color-moss-100: #e3e9dd;
+  --color-ochre-600: #a67c2e;   /* warnings, data-quality flags */
+  --color-ochre-100: #f2e6c9;
+  --color-slate-600: #4a5a68;   /* concepts / graph */
+  --color-slate-100: #dde4e9;
+
+  /* Type */
+  --font-sans: "Inter var", Inter, ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype",
+                Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo,
+               Consolas, monospace;
+  /* Monogram / footer flourish only — never body copy. */
+  --font-mark: "Instrument Serif", "Newsreader", Georgia, serif;
+
+  --radius-card: 6px;
+}
+
+/* Theme colours reach the graph island through CSS vars, not props. */
+:root {
+  color-scheme: light;
+  --graph-node: #4a5a68;
+  --graph-edge: #c3b795;
+  --graph-highlight: #9c5b3f;
+}
+
+/* Element defaults live in @layer base so that utility classes (text-*, bg-*)
+   always beat them regardless of source order. Without the layer, a bare
+   `a { color: inherit }` emitted after Tailwind's utilities silently wins at
+   equal specificity and swallows every text colour on a link. */
+@layer base {
+  html {
+    background-color: var(--color-paper-100);
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper-100);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv05" 1, "ss01" 1, "tnum" 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--color-ink-900);
+    font-weight: 550;
+    letter-spacing: -0.014em;
+    text-wrap: balance;
+  }
+
+  a { color: inherit; }
+}
+
+/* Numerals in stats and counts should align in columns. */
+.tabular { font-variant-numeric: tabular-nums; }
+
+::selection {
+  background: var(--color-clay-100);
+  color: var(--color-ink-900);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay-600);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Scrollbars, tinted to match the paper ground rather than the OS default. */
+* { scrollbar-color: var(--color-paper-400) transparent; scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-paper-400);
+  border: 3px solid var(--color-paper-100);
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Component primitives ────────────────────────────────────────────── */
+
+/* Chip: the workhorse. Raw tags, stack items, link chips all use it. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--color-paper-300);
+  background: var(--color-paper-50);
+  border-radius: 4px;
+  padding: 0.14rem 0.44rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--color-ink-500);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+a.chip:hover { border-color: var(--color-clay-600); color: var(--color-clay-600); }
+
+.chip-concept {
+  border-color: color-mix(in oklab, var(--color-slate-600) 28%, transparent);
+  background: var(--color-slate-100);
+  color: var(--color-slate-600);
+}
+a.chip-concept:hover {
+  border-color: var(--color-slate-600);
+  color: var(--color-ink-900);
+}
+
+.chip-flag {
+  border-color: color-mix(in oklab, var(--color-ochre-600) 34%, transparent);
+  background: var(--color-ochre-100);
+  color: #7d5c1c;
+}
+
+/* Section label — the small uppercase key used across the tool pages. */
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-ink-400);
+}
+
+.card {
+  background: var(--color-paper-50);
+  border: 1px solid var(--color-paper-300);
+  border-radius: var(--radius-card);
+}
+
+/* The papers ↔ projects backlink bar. This is the site's whole thesis, so it
+   gets the one saturated-ish colour and always reads the same way. */
+.backlink {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+  border: 1px solid color-mix(in oklab, var(--color-moss-700) 30%, transparent);
+  background: var(--color-moss-100);
+  border-radius: 5px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8rem;
+  color: var(--color-moss-700);
+}
+.backlink a { text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--color-moss-700) 40%, transparent); text-underline-offset: 2px; }
+.backlink a:hover { color: var(--color-ink-900); }
+
+/* Prose for note bodies and project write-ups. */
+.prose-note { color: var(--color-ink-700); font-size: 0.94rem; line-height: 1.72; }
+.prose-note > * + * { margin-top: 0.95em; }
+.prose-note h2 { font-size: 1.06rem; margin-top: 1.9em; }
+.prose-note h3 { font-size: 0.96rem; margin-top: 1.5em; }
+.prose-note a { color: var(--color-clay-600); text-decoration: underline; text-underline-offset: 2px; }
+.prose-note code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-paper-200);
+  border: 1px solid var(--color-paper-300);
+  border-radius: 3px;
+  padding: 0.08em 0.3em;
+}
+.prose-note pre {
+  background: var(--color-paper-200);
+  border: 1px solid var(--color-paper-300);
+  border-radius: 5px;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+  font-size: 0.84rem;
+}
+.prose-note pre code { background: none; border: 0; padding: 0; }
+.prose-note ul, .prose-note ol { padding-left: 1.15rem; }
+.prose-note ul { list-style: disc; }
+.prose-note ol { list-style: decimal; }
+.prose-note li + li { margin-top: 0.35em; }
+.prose-note blockquote {
+  border-left: 2px solid var(--color-paper-400);
+  padding-left: 0.9rem;
+  color: var(--color-ink-500);
+  font-style: italic;
+}
+.prose-note table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.prose-note th, .prose-note td {
+  border: 1px solid var(--color-paper-300);
+  padding: 0.4rem 0.55rem;
+  text-align: left;
+}
+.prose-note th { background: var(--color-paper-200); font-weight: 600; }
+
+/* ── Project card status accents ──────────────────────────────────────────
+   Four distinct tones. The accent is carried on a top rule + the status chip
+   so the grid reads as scannable status at a glance, not as four themes.
+   ──────────────────────────────────────────────────────────────────────── */
+.pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-paper-50);
+  border: 1px solid var(--color-paper-300);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.pcard::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--pc-accent);
+}
+.pcard:hover { border-color: color-mix(in oklab, var(--pc-accent) 45%, var(--color-paper-300)); }
+
+.pcard-production { --pc-accent: var(--color-moss-700); --pc-tint: var(--color-moss-100); --pc-ink: var(--color-moss-700); }
+.pcard-shipped    { --pc-accent: var(--color-clay-600); --pc-tint: var(--color-clay-100); --pc-ink: var(--color-clay-600); }
+.pcard-active     { --pc-accent: var(--color-ochre-600); --pc-tint: var(--color-ochre-100); --pc-ink: #7d5c1c; }
+.pcard-archived   { --pc-accent: var(--color-paper-400); --pc-tint: var(--color-paper-200); --pc-ink: var(--color-ink-400); }
+
+/* Status chip inherits the card's accent rather than restating it. */
+.chip-status {
+  border-color: color-mix(in oklab, var(--pc-accent) 32%, transparent);
+  background: var(--pc-tint);
+  color: var(--pc-ink);
+  font-weight: 500;
+}
+
+/* ── Contents rail (scroll-spy) ───────────────────────────────────────── */
+.toc-link {
+  display: block;
+  border-left: 1.5px solid var(--color-paper-300);
+  padding: 0.25rem 0 0.25rem 0.7rem;
+  font-size: 0.79rem;
+  line-height: 1.45;
+  color: var(--color-ink-400);
+  transition: color 0.14s, border-color 0.14s;
+}
+.toc-link:hover { color: var(--color-ink-700); }
+.toc-link[aria-current="true"] {
+  border-left-color: var(--color-clay-600);
+  color: var(--color-ink-900);
+  font-weight: 500;
+}
+.toc-link.toc-sub { padding-left: 1.35rem; font-size: 0.755rem; }
+
+/* ── Paper info panel ─────────────────────────────────────────────────────
+   Slide-in card on /research. The accent follows the paper's read status, so
+   the whole card is tinted by how thoroughly it was read.
+   ──────────────────────────────────────────────────────────────────────── */
+.ppanel {
+  background: var(--color-paper-50);
+  border-left-color: var(--pp-accent, var(--color-paper-400));
+  border-left-width: 3px;
+}
+.ppanel-head {
+  background: var(--pp-tint, var(--color-paper-200));
+  border-bottom: 1px solid color-mix(in oklab, var(--pp-accent) 26%, transparent);
+}
+.ppanel .chip-status {
+  --pc-accent: var(--pp-accent);
+  --pc-tint: var(--color-paper-50);
+  --pc-ink: var(--pp-ink);
+}
+
+/* read = fully absorbed, skimmed = partial, noted = filed only. */
+.ppanel-read    { --pp-accent: var(--color-moss-700); --pp-tint: var(--color-moss-100); --pp-ink: var(--color-moss-700); }
+.ppanel-skimmed { --pp-accent: var(--color-ochre-600); --pp-tint: var(--color-ochre-100); --pp-ink: #7d5c1c; }
+.ppanel-noted   { --pp-accent: var(--color-slate-600); --pp-tint: var(--color-slate-100); --pp-ink: var(--color-slate-600); }
+
+/* The row is a panel trigger, so it should read as clickable. */
+#list > [data-panel] { cursor: pointer; }
+
+/* ── Paper rows, tinted by read status ────────────────────────────────────
+   The row that opens the info panel shares the panel's accent, so the list
+   and the card that pops out of it read as the same object.
+   ──────────────────────────────────────────────────────────────────────── */
+.prow {
+  background: var(--pr-tint);
+  box-shadow: inset 2px 0 0 var(--pr-accent);
+}
+.prow:hover { background: var(--pr-hover); }
+
+.prow-read {
+  --pr-accent: color-mix(in oklab, var(--color-moss-700) 55%, transparent);
+  --pr-tint: color-mix(in oklab, var(--color-moss-100) 42%, var(--color-paper-50));
+  --pr-hover: var(--color-moss-100);
+}
+.prow-skimmed {
+  --pr-accent: color-mix(in oklab, var(--color-ochre-600) 55%, transparent);
+  --pr-tint: color-mix(in oklab, var(--color-ochre-100) 42%, var(--color-paper-50));
+  --pr-hover: var(--color-ochre-100);
+}
+.prow-noted {
+  --pr-accent: color-mix(in oklab, var(--color-slate-600) 55%, transparent);
+  --pr-tint: color-mix(in oklab, var(--color-slate-100) 42%, var(--color-paper-50));
+  --pr-hover: var(--color-slate-100);
+}
+
+/* ── Beautification layer (added) ─────────────────────────────────────────
+   Cover band, page texture, drifting research map, hover lifts.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Page-wide iconated texture. Sits on the paper ground, never on white. */
+body {
+  background-color: var(--color-paper-100);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><g fill='none' stroke='%238a7f6d' stroke-width='1' opacity='0.16'><path d='M20 18 26 22 26 30 20 34 14 30 14 22z'/><path d='M120 40h14M127 33v14' stroke-linecap='round'/><circle cx='185' cy='95' r='8'/><path d='M40 120 46 131 58 131 48 139 52 151 40 144 28 151 32 139 22 131 34 131z'/><path d='M160 165h16M168 157v16' stroke-linecap='round'/><path d='M80 190a10 10 0 1 1 0 0.1z'/><path d='M190 20 196 30 208 30 198 38 202 50 190 43 178 50 182 38 172 30 184 30z'/></g></svg>");
+}
+
+/* ── Cover band ───────────────────────────────────────────────────────── */
+.cover {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background: #111 url("/cover.jpg") 50% 22% / cover no-repeat;
+}
+.cover::before,
+.cover::after { content: ""; position: absolute; inset: 0; }
+.cover::before {
+  background: linear-gradient(180deg, rgba(10,9,7,0.72) 0%, rgba(15,13,10,0.55) 45%,
+              rgba(20,17,13,0.35) 72%, var(--color-paper-100) 100%);
+}
+.cover::after {
+  background: linear-gradient(90deg, rgba(10,9,7,0.55) 0%, rgba(10,9,7,0.05) 45%, transparent 70%);
+}
+.cover-inner { position: relative; z-index: 1; box-sizing: border-box; height: 100%; }
+.cover h1 { color: var(--color-paper-50); text-shadow: 0 2px 16px rgba(0,0,0,0.45); }
+.cover-avatar { border: 2px solid rgba(250,247,238,0.9); box-shadow: 0 14px 34px -10px rgba(0,0,0,0.55); }
+.cover-icon {
+  background: rgba(250,247,238,0.92);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.28);
+}
+
+/* ── Motion ───────────────────────────────────────────────────────────── */
+@keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes drift {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(6px,-8px); }
+  50% { transform: translate(-5px,5px); }
+  75% { transform: translate(4px,9px); }
+}
+@keyframes blobDrift {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(14px,-12px) scale(1.08); }
+}
+.rise { animation: riseIn 0.7s cubic-bezier(.2,.7,.3,1) both; }
+.rise-2 { animation: riseIn 0.6s 0.15s cubic-bezier(.2,.7,.3,1) both; }
+.rise-3 { animation: riseIn 0.6s 0.25s cubic-bezier(.2,.7,.3,1) both; }
+
+/* Hover lift for cards. Border-only hover was too quiet. */
+.card, .pcard { transition: transform 0.22s cubic-bezier(.2,.7,.3,1), box-shadow 0.22s, border-color 0.22s; }
+.card:hover, .pcard:hover { transform: translateY(-3px); box-shadow: 0 10px 24px -8px rgba(36,31,24,0.16); }
+
+/* ── Research map (drifting concept constellation) ────────────────────── */
+/* Deliberately unframed: transparent ground and no border, so the constellation
+   reads as part of the page rather than a card sitting on it. (user-review.md) */
+.rmap {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+/* Narrow viewports cannot fit 26 labels in 440px without the collision solver
+   giving up and letting them overlap. Trade height for breathing room, and the
+   component drops the smallest concepts below 640px. */
+@media (max-width: 900px) { .rmap { height: 520px; } }
+@media (max-width: 640px) { .rmap { height: 560px; } }
+.rmap-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: blobDrift ease-in-out infinite;
+}
+.rmap-star {
+  position: absolute;
+  left: 0; top: 0;
+  visibility: hidden;              /* JS reveals after measuring */
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 2px 4px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  animation: drift ease-in-out infinite;
+  transition: color 0.18s;
+}
+.rmap-star:hover { color: var(--color-ink-900); }
+
+/* Without JS nothing measures the labels, so the absolute placement never
+   happens. Fall back to a centred wrapped run rather than an empty box. */
+.no-js .rmap > div:last-child {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 26px;
+  padding: 44px 40px;
+}
+.no-js .rmap-star { position: static; visibility: visible; animation: none; }
+.rmap-dot { border-radius: 50%; flex: none; }
+
+/* ── Hero epigraph ────────────────────────────────────────────────────────
+   A pull quote, so it gets real quotation marks. The opening “ hangs in the
+   left margin via a pseudo-element, which keeps the text itself flush with the
+   sections below instead of visually indented by a glyph. */
+.epigraph {
+  position: relative;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--color-ink-500);
+  /* Room for the hanging quote at wider viewports. */
+  padding-left: 1.55rem;
+}
+.epigraph::before {
+  content: '“';
+  position: absolute;
+  left: 0;
+  top: -0.06em;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: color-mix(in oklab, var(--color-clay-600) 42%, transparent);
+  font-style: normal;
+  pointer-events: none;
+}
+/* Closing quote sits inline right after the final word, not on its own line. */
+.epigraph p::after {
+  content: '”';
+  margin-left: 0.06em;
+  color: color-mix(in oklab, var(--color-clay-600) 42%, transparent);
+  font-style: normal;
+}
+
+.epigraph cite {
+  display: block;
+  margin-top: 0.85rem;
+  font-style: normal;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-400);
+}
+/* An em dash before the attribution, standard for a pull quote. */
+.epigraph cite::before { content: '— '; }
+.epigraph-src { color: var(--color-paper-400); }
+.epigraph-src::before { content: '·'; margin: 0 0.4rem; }
+
+/* Centred variant. A quote hanging in the left margin only reads as a hang
+   when the text below it is flush left — centred, it just looks misaligned. So
+   the pseudo-element goes inline and the padding that reserved its space is
+   dropped, keeping the block optically centred. */
+.epigraph-center {
+  padding-left: 0;
+  text-align: center;
+}
+.epigraph-center::before { display: none; }
+.epigraph-center p::before {
+  content: '“';
+  margin-right: 0.06em;
+  color: color-mix(in oklab, var(--color-clay-600) 42%, transparent);
+  font-style: normal;
+}
+
+/* The hanging glyph costs more than it earns on a narrow screen. Only relevant
+   for a left-aligned .epigraph — .epigraph-center already inlines it. */
+@media (max-width: 640px) {
+  .epigraph:not(.epigraph-center) { padding-left: 0; }
+  .epigraph:not(.epigraph-center)::before { display: none; }
+  .epigraph:not(.epigraph-center) p::before {
+    content: '“';
+    color: color-mix(in oklab, var(--color-clay-600) 42%, transparent);
+    font-style: normal;
+  }
+}
+
+/* Courses read as one italic run, not as cards. */
+.course-run {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.9;
+  color: var(--color-ink-500);
+}
+/* Separator rides on the item, so a filtered-out course takes its `·` with it.
+   :not([hidden]) ~ picks the first *visible* item, which is what should have no
+   leading separator — index-based markup could not do this. */
+.course-item[hidden] { display: none; }
+.course-run .course-item:not([hidden]) ~ .course-item:not([hidden])::before {
+  content: '·';
+  margin: 0 0.65rem;
+  color: var(--color-paper-400);
+  font-style: normal;
+}
+
+/* ── Category filter (courses / certificates) ─────────────────────────────
+   A butted-together segmented control: chips share borders so the group reads
+   as one switch. Selected is the clay fill; unselected recedes. */
+.catchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 12.5px;
+  line-height: 1.3;
+  white-space: nowrap;
+  background: var(--color-paper-50);
+  color: var(--color-ink-400);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+/* Shared borders, so N chips show N-1 dividers. */
+.catchip + .catchip { border-left: 1px solid var(--color-paper-300); }
+.catchip:hover { background: var(--color-paper-200); color: var(--color-ink-700); }
+
+.catchip[aria-pressed='true'] {
+  background: var(--color-clay-600);
+  color: var(--color-paper-50);
+  font-weight: 500;
+}
+.catchip[aria-pressed='true']:hover {
+  background: var(--color-ink-900);
+  color: var(--color-paper-50);
+}
+
+/* The count rides along at lower contrast in both states. */
+.catchip-n { opacity: 0.62; font-size: 11px; }
+
+/* The last active chip is disabled so the list can never filter to empty.
+   It stays visually selected — just not clickable. */
+.catchip:disabled { cursor: default; }
+
+.catchip:focus-visible {
+  outline: 2px solid var(--color-clay-600);
+  outline-offset: -2px;
+}

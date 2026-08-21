@@ -1,0 +1,296 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import PaperRow from '../components/PaperRow.astro';
+import PaperPanel from '../components/PaperPanel.astro';
+import {
+  allPapers,
+  themeCounts,
+  statusCounts,
+  paperBacklinks,
+  relatedPapers,
+  blogsByPaper,
+} from '../lib/data';
+
+const papers = await allPapers();
+const themes = await themeCounts();
+const statuses = await statusCounts();
+const backlinks = await paperBacklinks();
+const blogMap = await blogsByPaper();
+
+// Related papers are computed per row here rather than inside PaperRow so the
+// concept-overlap work happens once per paper, not once per render.
+const relatedBySlug = new Map(
+  await Promise.all(
+    papers.map(async (p) => [p.slug, await relatedPapers(p.slug)] as const)
+  )
+);
+
+const unconfirmed = papers.filter((p) => p.data.confidence === 'unconfirmed');
+
+// Sort orders are prebuilt as index lists so the filter script only ever
+// reorders DOM nodes it already has — 80 rows, no framework needed.
+const statusOrder = ['noted', 'read', 'skimmed'] as const;
+---
+
+<Base
+  title="Research library"
+  description={`${papers.length} papers, tagged and linked back to what they were used to build.`}
+>
+  <header class="rise pt-10 pb-6">
+    <h1 class="font-serif text-[2.2rem] font-medium">Research library</h1>
+    <p class="mt-2 font-serif text-[16px] text-ink-500 italic">
+      {papers.length} papers, tagged and linked back to what they were used to build.
+    </p>
+  </header>
+
+  {/* Toolbar */}
+  <div class="sticky top-14 z-30 -mx-5 border-y border-paper-300 bg-paper-100/95 px-5 py-2.5 backdrop-blur-sm sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12">
+    <div class="flex flex-wrap items-center gap-2">
+      <label class="relative min-w-[220px] flex-1" for="search">
+        <span class="sr-only">Search papers</span>
+        <span class="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-ink-400">
+          <Icon name="search" size={14} />
+        </span>
+        <input
+          id="search"
+          type="search"
+          autocomplete="off"
+          placeholder="search titles, tags, notes…"
+          class="w-full rounded-[5px] border border-paper-300 bg-paper-50 py-1.5 pr-3 pl-8 text-[13px] text-ink-900 placeholder:text-ink-400 focus:border-clay-600 focus:outline-none"
+        />
+      </label>
+
+      <select
+        id="sort"
+        class="rounded-[5px] border border-paper-300 bg-paper-50 px-2.5 py-1.5 text-[12.5px] text-ink-700 focus:border-clay-600 focus:outline-none"
+        aria-label="Sort order"
+      >
+        <option value="title">Sort: title</option>
+        <option value="theme">Sort: theme</option>
+        <option value="concepts">Sort: most concepts</option>
+      </select>
+
+      <a
+        href="/graph/"
+        class="flex items-center gap-1.5 rounded-[5px] border border-paper-300 bg-paper-50 px-2.5 py-1.5 text-[12.5px] text-ink-700 transition-colors hover:border-clay-600 hover:text-clay-600"
+      >
+        <Icon name="graph" size={13} /> Graph
+      </a>
+    </div>
+  </div>
+
+  <div class="grid gap-7 pt-6 md:grid-cols-[210px_minmax(0,1fr)]">
+    {/* ── Facet rail ─────────────────────────────────────────────────── */}
+    <aside class="md:sticky md:top-[7.4rem] md:h-fit">
+      <div class="flex items-center justify-between">
+        <p class="eyebrow">Themes</p>
+        <button
+          id="clear"
+          type="button"
+          class="hidden text-[11.5px] text-clay-600 hover:text-ink-900"
+        >clear</button>
+      </div>
+
+      <ul class="mt-2.5 space-y-px">
+        {
+          themes.map((t) => (
+            <li>
+              <button
+                type="button"
+                class="facet flex w-full items-center gap-2 rounded-[4px] px-2 py-[5px] text-left text-[12.5px] text-ink-700 transition-colors hover:bg-paper-200"
+                data-facet="theme"
+                data-value={t.theme}
+                aria-pressed="false"
+              >
+                <span class="min-w-0 flex-1 truncate">{t.theme}</span>
+                <span class="tabular shrink-0 text-[11.5px] text-ink-400">{t.count}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="eyebrow mt-6 border-t border-paper-300 pt-4">Status</p>
+      <ul class="mt-2.5 space-y-px">
+        {
+          statusOrder.map((s) => (
+            <li>
+              <button
+                type="button"
+                class="facet flex w-full items-center gap-2 rounded-[4px] px-2 py-[5px] text-left text-[12.5px] text-ink-700 transition-colors hover:bg-paper-200"
+                data-facet="status"
+                data-value={s}
+                aria-pressed="false"
+              >
+                <span class="flex-1 capitalize">{s}</span>
+                <span class="tabular shrink-0 text-[11.5px] text-ink-400">
+                  {statuses.get(s) ?? 0}
+                </span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="eyebrow mt-6 border-t border-paper-300 pt-4">Flags</p>
+      <ul class="mt-2.5 space-y-px">
+        <li>
+          <button
+            type="button"
+            class="facet flex w-full items-center gap-2 rounded-[4px] px-2 py-[5px] text-left text-[12.5px] text-ink-700 transition-colors hover:bg-paper-200"
+            data-facet="confidence"
+            data-value="unconfirmed"
+            aria-pressed="false"
+          >
+            <span class="flex-1">Needs re-tagging</span>
+            <span class="tabular shrink-0 text-[11.5px] text-ink-400">{unconfirmed.length}</span>
+          </button>
+        </li>
+      </ul>
+
+    </aside>
+
+    {/* ── List ───────────────────────────────────────────────────────── */}
+    <div>
+      <p id="count" class="mb-1.5 text-[12px] text-ink-400" aria-live="polite">
+        {papers.length} papers
+      </p>
+      <div id="list" class="grid gap-2 lg:grid-cols-2">
+        {
+          papers.map((paper) => (
+            <PaperRow
+              paper={paper}
+              projects={(backlinks.get(paper.slug) ?? []).map((pr) => ({
+                slug: pr.slug,
+                title: pr.data.title,
+              }))}
+              related={relatedBySlug.get(paper.slug) ?? []}
+              blogs={(blogMap.get(paper.slug) ?? []).map((b) => ({
+                slug: b.slug,
+                title: b.data.title,
+              }))}
+            />
+          ))
+        }
+      </div>
+      <p id="empty" class="hidden py-12 text-center text-[13px] text-ink-400">
+        Nothing matches. <button id="reset" class="text-clay-600 underline">Reset filters</button>
+      </p>
+    </div>
+  </div>
+
+  <PaperPanel />
+</Base>
+
+{/*
+  Filtering runs on the prerendered rows via data-* attributes. 80 rows is
+  small enough that this beats shipping a search index plus a framework — the
+  whole thing is ~1.5 KB and needs no hydration.
+*/}
+<script is:inline>
+  (() => {
+    const list = document.getElementById('list');
+    if (!list) return;
+    const rows = Array.from(list.children);
+    const search = document.getElementById('search');
+    const sortSel = document.getElementById('sort');
+    const count = document.getElementById('count');
+    const empty = document.getElementById('empty');
+    const clear = document.getElementById('clear');
+    const facetBtns = Array.from(document.querySelectorAll('.facet'));
+
+    const active = { theme: new Set(), status: new Set(), confidence: new Set() };
+
+    const hay = (el) =>
+      (el.dataset.title || '') + ' ' + (el.dataset.tags || '') + ' ' + (el.dataset.note || '');
+
+    function matches(el, q) {
+      if (q && !hay(el).includes(q)) return false;
+      if (active.theme.size && !active.theme.has(el.dataset.theme)) return false;
+      if (active.status.size && !active.status.has(el.dataset.status)) return false;
+      if (active.confidence.size && !active.confidence.has(el.dataset.confidence)) return false;
+      return true;
+    }
+
+    function apply() {
+      const q = (search.value || '').trim().toLowerCase();
+      let shown = 0;
+      for (const el of rows) {
+        const ok = matches(el, q);
+        el.hidden = !ok;
+        if (ok) shown++;
+      }
+      count.textContent = shown + (shown === 1 ? ' paper' : ' papers');
+      empty.classList.toggle('hidden', shown > 0);
+      const any = q || Object.values(active).some((s) => s.size);
+      clear.classList.toggle('hidden', !any);
+    }
+
+    function sort(mode) {
+      const key = {
+        title: (el) => el.dataset.title,
+        theme: (el) => el.dataset.theme + '|' + el.dataset.title,
+        concepts: (el) =>
+          String(999 - (el.dataset.concepts ? el.dataset.concepts.split(' ').filter(Boolean).length : 0)).padStart(4, '0') +
+          el.dataset.title,
+      }[mode];
+      const sorted = rows.slice().sort((a, b) => key(a).localeCompare(key(b)));
+      for (const el of sorted) list.appendChild(el);
+    }
+
+    search.addEventListener('input', apply);
+    sortSel.addEventListener('change', (e) => sort(e.target.value));
+
+    for (const btn of facetBtns) {
+      btn.addEventListener('click', () => {
+        const { facet, value } = btn.dataset;
+        const set = active[facet];
+        const on = set.has(value);
+        // Themes and statuses are multi-select; flags are toggles.
+        if (on) set.delete(value);
+        else set.add(value);
+        btn.setAttribute('aria-pressed', String(!on));
+        btn.classList.toggle('bg-paper-200', !on);
+        btn.classList.toggle('font-medium', !on);
+        btn.classList.toggle('text-ink-900', !on);
+        apply();
+      });
+    }
+
+    function reset() {
+      search.value = '';
+      for (const k of Object.keys(active)) active[k].clear();
+      for (const b of facetBtns) {
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('bg-paper-200', 'font-medium', 'text-ink-900');
+      }
+      apply();
+    }
+    clear.addEventListener('click', reset);
+    document.getElementById('reset')?.addEventListener('click', reset);
+
+    // ?theme= / ?concept= deep links, used by the project backlink bars.
+    const params = new URLSearchParams(location.search);
+    const theme = params.get('theme');
+    if (theme) {
+      const btn = facetBtns.find((b) => b.dataset.facet === 'theme' && b.dataset.value === theme);
+      btn?.click();
+    }
+    const concept = params.get('concept');
+    if (concept) {
+      for (const el of rows) {
+        const has = (el.dataset.concepts || '').split(' ').includes(concept);
+        el.hidden = !has;
+      }
+      const n = rows.filter((el) => !el.hidden).length;
+      count.textContent = n + (n === 1 ? ' paper' : ' papers') + ' · concept filter';
+      clear.classList.remove('hidden');
+    }
+    const q = params.get('q');
+    if (q) {
+      search.value = q;
+      apply();
+    }
+  })();
+</script>

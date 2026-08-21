@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import { allBlogs } from '../../lib/data';
+
+const posts = await allBlogs();
+---
+
+<Base title="Blogs" description="Write-ups on the papers in the library.">
+  <header class="rise pt-10 pb-6">
+    <h1 class="font-serif text-[2.2rem] font-medium">Blogs</h1>
+  </header>
+
+  {
+    posts.length === 0 ? (
+      <p class="pb-6 text-[13px] text-ink-400">Nothing published yet.</p>
+    ) : (
+      <ul class="space-y-3 pb-6">
+        {posts.map((post) => (
+          <li class="card px-5 py-4">
+            <p class="tabular text-[11.5px] text-ink-400">
+              {post.data.date.toISOString().slice(0, 10)}
+            </p>
+            <h2 class="mt-1 text-[16px] leading-snug font-medium">
+              <a href={`/blogs/${post.slug}/`} class="hover:text-clay-600">
+                {post.data.title}
+              </a>
+            </h2>
+            {post.data.summary && (
+              <p class="mt-1.5 text-[13px] leading-relaxed text-ink-500">
+                {post.data.summary}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>

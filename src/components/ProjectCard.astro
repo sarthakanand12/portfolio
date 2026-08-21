@@ -1,0 +1,87 @@
+---
+import Icon from './Icon.astro';
+import { conceptLabel, type Project } from '../lib/data';
+
+interface Props {
+  project: Project;
+  /** Grid cards drop the dt/dd table for a single punchy summary. */
+  compact?: boolean;
+  /** Personal projects carry a codebase, so they show a repo link. */
+  showRepo?: boolean;
+}
+const { project, compact = false, showRepo = false } = Astro.props;
+const { data } = project;
+
+/** First sentence of `approach` — the punchy line. Falls back to the whole
+ *  field when there is no sentence break to cut on. */
+function punch(text: string): string {
+  const flat = text.replace(/\s+/g, ' ').trim();
+  const cut = flat.match(/^.*?[.:](?=\s|$)/);
+  const first = cut ? cut[0].replace(/[.:]$/, '') : flat;
+  return first.length > 30 ? first : flat;
+}
+
+const topConcepts = project.concepts.slice(0, 2).map(conceptLabel);
+const summary = punch(data.approach);
+---
+
+<article class:list={['pcard', `pcard-${data.status}`]}>
+  <div class:list={['flex flex-1 flex-col', compact ? 'p-4' : 'p-5']}>
+    <div class="flex items-start justify-between gap-3">
+      <p class="text-[11.5px] text-ink-400">
+        {data.org} <span class="text-paper-400">·</span> {data.period}
+      </p>
+      <div class="flex shrink-0 items-center gap-1.5">
+        {
+          showRepo && data.repo && (
+            <a
+              href={data.repo}
+              target="_blank"
+              rel="noopener"
+              title="Source on GitHub"
+              aria-label={`${data.title} source on GitHub`}
+              class="grid size-[22px] place-items-center rounded-[4px] border border-paper-300 bg-paper-50 text-ink-400 transition-colors hover:border-clay-600 hover:text-clay-600"
+            >
+              <Icon name="github" size={12} />
+            </a>
+          )
+        }
+        <span class="chip chip-status">{data.status}</span>
+      </div>
+    </div>
+
+    <h3
+      class:list={[
+        'mt-2 leading-snug font-medium text-ink-900',
+        compact ? 'text-[15px]' : 'text-[16.5px]',
+      ]}
+    >
+      <a href={`/projects/${project.slug}/`} class="hover:text-clay-600">{data.title}</a>
+    </h3>
+
+    <p class="mt-2 flex-1 text-[13px] leading-relaxed text-ink-500">{summary}</p>
+
+    <ul class="mt-3.5 flex flex-wrap gap-1.5">
+      {data.stack.slice(0, 4).map((s) => <li class="chip">{s}</li>)}
+      {data.stack.length > 4 && <li class="chip">+{data.stack.length - 4}</li>}
+    </ul>
+  </div>
+
+  {/* The backlink bar. This is the site's thesis, so it always reads the same. */}
+  {
+    data.papers.length > 0 && (
+      <a
+        href={`/projects/${project.slug}/#reading`}
+        class="backlink mx-4 mb-4 rounded-[5px] text-[12px] no-underline hover:border-moss-700/55"
+      >
+        <Icon name="backlink" size={12} />
+        <span class="font-medium">
+          grounded in {data.papers.length} paper{data.papers.length === 1 ? '' : 's'}
+        </span>
+        {topConcepts.length > 0 && (
+          <span class="truncate text-moss-600">· {topConcepts.join(', ')}</span>
+        )}
+      </a>
+    )
+  }
+</article>

@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { allProjects } from '../../lib/data';
+
+const projects = await allProjects();
+
+// Same split as the homepage — enterprise = paid/client work.
+const ENTERPRISE_ORGS = new Set(['Convin', 'AICTE tender']);
+const enterprise = projects.filter((p) => ENTERPRISE_ORGS.has(p.data.org));
+const personal = projects.filter((p) => !ENTERPRISE_ORGS.has(p.data.org));
+---
+
+<Base title="Projects" description="Enterprise and personal ML engineering projects, each backlinked to its source papers.">
+  <header class="rise pt-10 pb-6">
+    <h1 class="font-serif text-[2.2rem] font-medium">Projects</h1>
+  </header>
+
+  <section class="pb-4">
+    <h2 class="eyebrow mb-3">Enterprise</h2>
+    <div class="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
+      {enterprise.map((project) => <ProjectCard project={project} compact showRepo />)}
+    </div>
+
+    {
+      personal.length > 0 && (
+        <>
+          <h2 class="eyebrow mt-9 mb-3">Personal</h2>
+          <div class="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
+            {personal.map((project) => (
+              <ProjectCard project={project} compact showRepo />
+            ))}
+          </div>
+        </>
+      )
+    }
+  </section>
+</Base>

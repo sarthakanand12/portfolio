@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  # Required for the OIDC handshake deploy-pages uses. Omit it and the deploy
+  # job fails with an opaque auth error.
+  id-token: write
+
+# Pages allows one in-flight deployment. Without this, two quick pushes race
+# and one fails; cancel-in-progress: false lets the first finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # data/graph.json is committed, so CI needs no Python. Regenerate it
+      # locally with `npm run graph` when the sources change.
+      - uses: withastro/action@v6
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

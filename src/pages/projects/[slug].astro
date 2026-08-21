@@ -1,0 +1,205 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import {
+  allProjects,
+  allPapers,
+  conceptLabel,
+  getConcept,
+  type Project,
+} from '../../lib/data';
+
+export async function getStaticPaths() {
+  const projects = await allProjects();
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const { data } = project;
+
+const { Content } = await render(project.entry);
+const papers = await allPapers();
+const bySlug = new Map(papers.map((p) => [p.slug, p]));
+
+// Reading list grouped by theme — the shape of the reading is itself a signal.
+const cited = data.papers.map((s) => bySlug.get(s)!).filter(Boolean);
+const byTheme = new Map<string, typeof cited>();
+for (const p of cited) {
+  const list = byTheme.get(p.data.theme) ?? [];
+  list.push(p);
+  byTheme.set(p.data.theme, list);
+}
+const themeGroups = [...byTheme.entries()].sort(
+  (a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0])
+);
+
+const statusTone: Record<string, string> = {
+  production: 'border-moss-700/30 bg-moss-100 text-moss-700',
+  active: 'border-clay-600/30 bg-clay-100 text-clay-600',
+  shipped: 'border-slate-600/30 bg-slate-100 text-slate-600',
+  archived: 'border-paper-400 bg-paper-200 text-ink-400',
+};
+---
+
+<Base title={data.title} description={data.problem}>
+  <nav class="flex items-center gap-1.5 pt-8 text-[12px] text-ink-400" aria-label="Breadcrumb">
+    <a href="/projects/" class="hover:text-clay-600">Projects</a>
+    <span class="text-paper-400">›</span>
+    <span>{data.org}</span>
+  </nav>
+
+  <header class="pt-4 pb-7">
+    <h1 class="max-w-4xl text-[1.75rem] leading-tight font-medium">{data.title}</h1>
+    <p class="mt-2.5 text-[13px] text-ink-500">
+      {data.org} <span class="text-paper-400">·</span> {data.period}
+    </p>
+
+    <div class="mt-4 flex flex-wrap items-center gap-1.5">
+      <span class:list={['chip', statusTone[data.status]]}>{data.status}</span>
+      {data.stack.map((s) => <span class="chip">{s}</span>)}
+      {
+        data.repo && (
+          <a href={data.repo} target="_blank" rel="noopener" class="chip">
+            <Icon name="code" size={11} /> Repo
+          </a>
+        )
+      }
+    </div>
+  </header>
+
+  <div class="grid gap-8 pb-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+    <div class="min-w-0">
+      {/* Problem / approach / result, same shape as the card. */}
+      <dl class="card space-y-3.5 px-5 py-4 text-[13.5px] leading-relaxed">
+        <div>
+          <dt class="eyebrow">Problem</dt>
+          <dd class="mt-1.5 text-ink-700">{data.problem}</dd>
+        </div>
+        <div class="border-t border-paper-300 pt-3.5">
+          <dt class="eyebrow">Approach</dt>
+          <dd class="mt-1.5 text-ink-700">{data.approach}</dd>
+        </div>
+        <div class="border-t border-paper-300 pt-3.5">
+          <dt class="eyebrow">Result</dt>
+          <dd class="mt-1.5 text-ink-900">
+            {data.result}
+            {
+              data.resultIsPlaceholder && (
+                <span class="chip chip-flag ml-1.5 align-[1px]">
+                  <Icon name="warn" size={10} /> metric pending
+                </span>
+              )
+            }
+          </dd>
+        </div>
+      </dl>
+
+      {
+        project.entry.body?.trim() && (
+          <div class="prose-note mt-7">
+            <Content />
+          </div>
+        )
+      }
+    </div>
+
+    <aside class="space-y-6 lg:sticky lg:top-[4.7rem] lg:h-fit">
+      {
+        project.concepts.length > 0 && (
+          <section>
+            <p class="eyebrow flex items-center gap-1.5">
+              <Icon name="concept" size={12} /> Concepts drawn on
+            </p>
+            <ul class="mt-2.5 flex flex-wrap gap-1.5">
+              {project.concepts.slice(0, 12).map((c) => (
+                <li>
+                  <a href={`/graph/?c=${c}`} class="chip chip-concept">
+                    {conceptLabel(c)}
+                    <span class="tabular opacity-60">{getConcept(c)?.count}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <section class="border-t border-paper-300 pt-5">
+        <p class="eyebrow">Stack</p>
+        <ul class="mt-2.5 flex flex-wrap gap-1.5">
+          {data.stack.map((s) => <li class="chip">{s}</li>)}
+        </ul>
+      </section>
+    </aside>
+  </div>
+
+  {/* ── The reading list. This is the section the site exists for. ────── */}
+  <section id="reading" class="scroll-mt-20 border-t border-paper-300 pt-8 pb-4">
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h2 class="flex items-center gap-2 text-[1.3rem] font-medium">
+        <Icon name="backlink" size={17} /> Grounded in {cited.length} paper{
+          cited.length === 1 ? '' : 's'
+        }
+      </h2>
+      <a href="/research/" class="text-[12.5px] text-clay-600 hover:text-ink-900">
+        browse the full library
+      </a>
+    </div>
+
+    {
+      cited.length === 0 ? (
+        <p class="mt-4 text-[13.5px] text-ink-400">
+          No papers cited yet. Add slugs to <code class="font-mono">papers:</code> in
+          <code class="font-mono">src/content/projects/{project.slug}.md</code>.
+        </p>
+      ) : (
+        <div class="mt-5 space-y-6">
+          {themeGroups.map(([theme, list]) => (
+            <div>
+              <p class="eyebrow flex items-center gap-1.5">
+                <Icon name="theme" size={12} /> {theme}
+                <span class="tabular text-ink-400">({list.length})</span>
+              </p>
+              <ul class="mt-2.5 divide-y divide-paper-300 border-y border-paper-300">
+                {list.map((p) => (
+                  <li class="py-2.5">
+                    <div class="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                      <a
+                        href={`/research/?paper=${p.slug}`}
+                        class="text-[13.5px] leading-snug font-medium text-ink-900 hover:text-clay-600"
+                      >
+                        {p.data.title}
+                      </a>
+                      {p.data.subtheme && (
+                        <span class="text-[11.5px] text-ink-400">{p.data.subtheme}</span>
+                      )}
+                    </div>
+                    <ul class="mt-1.5 flex flex-wrap gap-1.5">
+                      {p.concepts.slice(0, 4).map((c) => (
+                        <li class="chip chip-concept">{conceptLabel(c)}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  <a
+    href="/projects/"
+    class="mb-4 inline-flex items-center gap-1.5 text-[13px] text-clay-600 hover:text-ink-900"
+  >
+    <Icon name="arrowLeft" size={13} /> All projects
+  </a>
+</Base>

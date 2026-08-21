@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../site';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Tool pages run full-bleed and manage their own width. */
+  wide?: boolean;
+}
+const { title, description = site.positioning, wide = false } = Astro.props;
+const full = title === site.name ? title : title + ' · ' + site.handle;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{full}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#f6f1e3" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={full} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {/* Drop the no-js flag before first paint so JS-gated animations start
+        from their hidden state instead of flashing the finished one. */}
+    <script is:inline>document.documentElement.classList.remove('no-js');</script>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+    />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded focus:border focus:border-paper-400 focus:bg-paper-50 focus:px-3 focus:py-1.5 focus:text-sm"
+      >Skip to content</a
+    >
+    <Nav />
+    {/* Full-bleed band above the content column — escapes the max-width
+        wrapper on purpose. Only the homepage fills it. */}
+    <slot name="cover" />
+    <main
+      id="main"
+      class:list={['flex-1', wide ? '' : 'mx-auto w-full max-w-[1760px] px-5 sm:px-8 lg:px-12']}
+    >
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

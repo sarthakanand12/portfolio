@@ -1,0 +1,74 @@
+---
+interface Item {
+  id: string;
+  label: string;
+  sub?: boolean;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+
+<nav class="sticky top-[5.5rem]" aria-label="On this page" data-toc>
+  <p class="eyebrow mb-2.5">Contents</p>
+  <ul class="space-y-0">
+    {
+      items.map((it) => (
+        <li>
+          <a
+            href={`#${it.id}`}
+            class:list={['toc-link', it.sub && 'toc-sub']}
+            data-toc-link={it.id}
+          >
+            {it.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Scroll-spy. Tracks which section heading is nearest the top of the
+  // viewport rather than using raw intersection, so short sections at the
+  // bottom of the page still get highlighted instead of being skipped.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+  if (links.length) {
+    const targets = links
+      .map((l) => {
+        const id = l.dataset.tocLink!;
+        return { id, link: l, el: document.getElementById(id) };
+      })
+      .filter((t): t is { id: string; link: HTMLAnchorElement; el: HTMLElement } => !!t.el);
+
+    let queued = false;
+    const sync = () => {
+      queued = false;
+      const line = 140; // just below the sticky nav
+      let active = targets[0];
+      for (const t of targets) {
+        if (t.el.getBoundingClientRect().top <= line) active = t;
+      }
+      // At the very bottom, the last section wins even if it never crossed the
+      // line — otherwise a short final section can never be current.
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 8) {
+        active = targets[targets.length - 1];
+      }
+      for (const t of targets) {
+        if (t === active) t.link.setAttribute('aria-current', 'true');
+        else t.link.removeAttribute('aria-current');
+      }
+    };
+
+    const onScroll = () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(sync);
+      }
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll, { passive: true });
+    sync();
+  }
+</script>

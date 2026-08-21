@@ -1,0 +1,103 @@
+---
+/**
+ * Research map — the concept constellation on the homepage.
+ *
+ * Not the graph. There are no edges here; it is a typographic cloud where size
+ * is papers-read and colour is theme, meant to be glanced at. `/graph` is the
+ * tool. Placement is seeded with data-x / data-y percentages and then resolved
+ * against measured label widths by placeResearchMap(), because percentage
+ * centres alone overflow and collide.
+ */
+import { graphData } from '../lib/data';
+import { themeColor } from '../lib/themeColor';
+
+interface Props {
+  /** How many concepts to show, largest first. */
+  limit?: number;
+}
+const { limit = 26 } = Astro.props;
+
+const nodes = [...graphData.nodes].sort((a, b) => b.count - a.count).slice(0, limit);
+
+const counts = nodes.map((n) => n.count);
+const max = Math.max(...counts);
+const min = Math.min(...counts);
+
+/** Type size tracks paper count. Range is deliberately wide — the point of the
+ *  cloud is that the big concepts are readable from across the room. */
+const fontSize = (count: number) => {
+  const t = max === min ? 1 : (count - min) / (max - min);
+  return (13 + t * 12).toFixed(2);
+};
+
+/**
+ * Deterministic scatter. A golden-angle spiral spreads the seeds evenly without
+ * a random source (which would reshuffle on every build), and biases the big
+ * concepts toward the centre because they are laid out first.
+ */
+const GOLDEN = 137.508;
+const seeds = nodes.map((_, i) => {
+  const a = (i * GOLDEN * Math.PI) / 180;
+  const r = Math.sqrt((i + 0.6) / nodes.length);
+  return {
+    x: (50 + Math.cos(a) * r * 41).toFixed(2),
+    y: (50 + Math.sin(a) * r * 37).toFixed(2),
+  };
+});
+
+/** One soft blob per major theme, tinted with that theme's colour. */
+const blobThemes = [...new Set(nodes.map((n) => n.theme))].slice(0, 7);
+const blobs = blobThemes.map((theme, i) => {
+  const a = (i * GOLDEN * Math.PI) / 180;
+  const r = Math.sqrt((i + 0.7) / blobThemes.length);
+  return {
+    color: themeColor(theme),
+    left: (50 + Math.cos(a) * r * 34).toFixed(1),
+    top: (50 + Math.sin(a) * r * 32).toFixed(1),
+    size: 320 - i * 16,
+    duration: 16 + i * 3,
+    delay: -(i * 2.5),
+  };
+});
+---
+
+<div class="rmap">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    {
+      blobs.map((b) => (
+        <span
+          class="rmap-blob"
+          style={`left:${b.left}%; top:${b.top}%; width:${b.size}px; height:${b.size}px;
+                  margin:${-b.size / 2}px 0 0 ${-b.size / 2}px;
+                  background:radial-gradient(circle, color-mix(in oklab, ${b.color} 24%, transparent) 0%, transparent 68%);
+                  animation-duration:${b.duration}s; animation-delay:${b.delay}s;`}
+        />
+      ))
+    }
+  </div>
+
+  <div class="absolute inset-0">
+    {
+      nodes.map((n, i) => (
+        <a
+          href={`/graph/?c=${n.id}`}
+          class="rmap-star"
+          data-x={seeds[i].x}
+          data-y={seeds[i].y}
+          title={`${n.label} — ${n.count} paper${n.count === 1 ? '' : 's'} · ${n.theme ?? 'unthemed'}`}
+          style={`font-size:${fontSize(n.count)}px;
+                  font-weight:${n.count >= max * 0.6 ? 600 : 500};
+                  color:color-mix(in oklab, ${themeColor(n.theme)} 82%, var(--color-ink-900));
+                  animation-duration:${14 + (i % 9) * 2}s;
+                  animation-delay:-${(i % 7) * 1.6}s;`}
+        >
+          <span
+            class="rmap-dot"
+            style={`width:${(4 + (n.count / max) * 4).toFixed(1)}px; height:${(4 + (n.count / max) * 4).toFixed(1)}px; background:${themeColor(n.theme)};`}
+          />
+          {n.label}
+        </a>
+      ))
+    }
+  </div>
+</div>

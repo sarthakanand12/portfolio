@@ -1,0 +1,268 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Contents from '../components/Contents.astro';
+import ResearchMap from '../components/ResearchMap.astro';
+import CategoryFilter from '../components/CategoryFilter.astro';
+import { site } from '../site';
+import { allProjects, allCourses, allCertificates } from '../lib/data';
+
+const projects = await allProjects();
+const courses = await allCourses();
+const certificates = await allCertificates();
+
+/** Chip lists, derived from the content so a new category needs no UI change. */
+const countBy = <T extends { data: { category: string } }>(items: T[]) => {
+  const counts = new Map<string, number>();
+  for (const i of items) counts.set(i.data.category, (counts.get(i.data.category) ?? 0) + 1);
+  return [...counts].sort(([a], [b]) => a.localeCompare(b)).map(([value, count]) => ({ value, count }));
+};
+const courseCategories = countBy(courses);
+
+// Enterprise = paid/client work. Everything else is self-directed.
+const ENTERPRISE_ORGS = new Set(['Convin', 'AICTE tender']);
+const enterprise = projects.filter((p) => ENTERPRISE_ORGS.has(p.data.org));
+const personal = projects.filter((p) => !ENTERPRISE_ORGS.has(p.data.org));
+
+// GitHub / LinkedIn / Email are icon buttons; the résumé is the one clay CTA.
+const iconLinks = [
+  { href: site.links.github, icon: 'github', label: 'GitHub', ext: true },
+  { href: site.links.linkedin, icon: 'linkedin', label: 'LinkedIn', ext: true },
+  { href: site.links.email, icon: 'mail', label: 'Email', ext: false },
+];
+
+const toc = [
+  { id: 'map', label: 'Research map' },
+  { id: 'work', label: 'Projects' },
+  { id: 'enterprise', label: 'Enterprise', sub: true },
+  { id: 'personal', label: 'Personal', sub: true },
+  { id: 'courses', label: 'Courses' },
+  { id: 'certificates', label: 'Certificates' },
+];
+---
+
+<Base title={site.name} description={site.positioning}>
+  {/* ── Cover band ─────────────────────────────────────────────────────────
+      Full-bleed, so it lives in the layout's cover slot rather than in main.
+      The avatar, name and links sit on the photo. */}
+  <div slot="cover" class="cover rise">
+    <div
+      class="cover-inner mx-auto flex max-w-[1760px] items-end gap-6 px-5 pb-9 sm:px-8 sm:pb-11 lg:px-12"
+    >
+      {/* Drop a file at public/profile.jpg and it replaces the monogram
+          automatically — no code change needed. */}
+      <div
+        class="cover-avatar grid size-[88px] shrink-0 place-items-center overflow-hidden rounded-[14px] bg-gradient-to-br from-paper-200 to-clay-100 sm:size-[112px]"
+      >
+        <span
+          class="col-start-1 row-start-1 font-mark text-[1.8rem] text-ink-400 italic select-none sm:text-[2.2rem]"
+          >SA</span
+        >
+        <img
+          src="/profile.jpg"
+          alt={site.name}
+          width="112"
+          height="112"
+          class="col-start-1 row-start-1 size-full object-cover"
+          onerror="this.remove()"
+        />
+      </div>
+
+      <div class="min-w-0 flex-1">
+        <h1
+          class="font-serif text-[2.1rem] leading-[1.02] font-medium sm:text-[2.6rem] lg:text-[3rem]"
+        >
+          {site.name}
+        </h1>
+
+        <div class="mt-3.5 flex flex-wrap items-center gap-2">
+          {
+            iconLinks.map((l) => (
+              <a
+                href={l.href}
+                target={l.ext ? '_blank' : undefined}
+                rel={l.ext ? 'noopener' : undefined}
+                title={l.label}
+                aria-label={l.label}
+                class="cover-icon grid size-[34px] place-items-center rounded-[8px] text-ink-900 transition-colors hover:text-clay-600"
+              >
+                <Icon name={l.icon} size={18} />
+              </a>
+            ))
+          }
+          <a
+            href={site.links.resume}
+            class="flex h-[34px] items-center rounded-[8px] bg-clay-600 px-3.5 text-[12.5px] font-medium text-paper-50 shadow-[0_2px_10px_rgba(0,0,0,0.28)] transition-colors hover:bg-ink-900"
+          >
+            Résumé (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_150px] lg:gap-x-10">
+    <div class="min-w-0">
+      {/* ── Hero body ───────────────────────────────────────────────────── */}
+      <section class="rise-2 pt-8 pb-9">
+        <blockquote class="epigraph epigraph-center">
+          <p>{site.epigraph.text}</p>
+          <cite>
+            {site.epigraph.author}
+            <span class="epigraph-src">{site.epigraph.source}</span>
+          </cite>
+        </blockquote>
+
+      </section>
+
+      {/* ── Research map ────────────────────────────────────────────────── */}
+      <section id="map" class="rise-3 scroll-mt-24 border-t border-paper-300 pt-9">
+        <div class="mb-3.5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <h2 class="font-serif text-[1.6rem] font-medium">Research map</h2>
+          <a
+            href="/graph/"
+            class="flex shrink-0 items-center gap-1.5 text-[13px] text-clay-600 hover:text-ink-900"
+          >
+            Open the graph <Icon name="arrowRight" size={13} />
+          </a>
+        </div>
+
+        <ResearchMap />
+      </section>
+
+      {/* ── Projects ────────────────────────────────────────────────────── */}
+      <section id="work" class="scroll-mt-24 pt-12">
+        <div class="mb-5 flex items-end justify-between gap-4">
+          <h2 class="font-serif text-[1.6rem] font-medium">Projects</h2>
+          <a
+            href="/projects/"
+            class="flex shrink-0 items-center gap-1.5 text-[13px] text-clay-600 hover:text-ink-900"
+          >
+            Open projects <Icon name="arrowRight" size={13} />
+          </a>
+        </div>
+
+        <h3 id="enterprise" class="eyebrow mb-3 scroll-mt-24">Enterprise</h3>
+        <div class="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
+          {enterprise.map((project) => <ProjectCard project={project} compact showRepo />)}
+        </div>
+
+        {
+          personal.length > 0 && (
+            <>
+              <h3 id="personal" class="eyebrow mt-9 mb-3 scroll-mt-24">
+                Personal
+              </h3>
+              <div class="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
+                {personal.map((project) => (
+                  <ProjectCard project={project} compact showRepo />
+                ))}
+              </div>
+            </>
+          )
+        }
+      </section>
+
+      {/* ── Courses ─────────────────────────────────────────────────────────
+          One italic run joined by separators, not cards — a course list is a
+          list of names, and cards gave each one more weight than it earns.
+          Separators are CSS pseudo-elements, not markup, so hiding an item via
+          the category filter can never leave a dangling `·`. */}
+      <section id="courses" class="scroll-mt-24 pt-12">
+        <div class="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5">
+          <h2 class="font-serif text-[1.6rem] font-medium">Courses</h2>
+          <CategoryFilter group="courses" categories={courseCategories} />
+        </div>
+        {
+          courses.length > 0 ? (
+            <>
+            <p class="course-run" data-filter-group="courses">
+              {courses.map((c) => (
+                <span class="course-item" data-category={c.data.category}>
+                  {c.data.url ? (
+                    <a href={c.data.url} target="_blank" rel="noopener" class="hover:text-clay-600">
+                      {c.data.title}
+                    </a>
+                  ) : (
+                    c.data.title
+                  )}
+                </span>
+              ))}
+            </p>
+            <p
+              class="text-[13px] text-ink-400"
+              data-filter-empty="courses"
+              hidden
+            >
+              No categories selected.
+            </p>
+            </>
+          ) : (
+            <p class="text-[13px] text-ink-400">
+              Add markdown files to <code class="font-mono">src/content/courses/</code> — they
+              render here as one italic, separator-joined run.
+            </p>
+          )
+        }
+      </section>
+
+      {/* ── Certificates ────────────────────────────────────────────────── */}
+      <section id="certificates" class="scroll-mt-24 pt-12 pb-4">
+        <h2 class="mb-4 font-serif text-[1.6rem] font-medium">Certificates</h2>
+        {
+          certificates.length > 0 ? (
+            <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {certificates.map((c) => (
+                <li class="card flex items-baseline gap-3 px-4 py-3">
+                  <div class="min-w-0 flex-1">
+                    <p class="text-[13.5px] leading-snug font-medium text-ink-900">
+                      {c.data.url ? (
+                        <a
+                          href={c.data.url}
+                          target="_blank"
+                          rel="noopener"
+                          class="hover:text-clay-600"
+                        >
+                          {c.data.title}
+                        </a>
+                      ) : (
+                        c.data.title
+                      )}
+                    </p>
+                    <p class="mt-0.5 text-[11.5px] text-ink-400">
+                      {c.data.issuer}
+                      {c.data.credentialId && (
+                        <>
+                          <span class="mx-1 text-paper-400">·</span>
+                          <span class="font-mono text-[11px]">{c.data.credentialId}</span>
+                        </>
+                      )}
+                    </p>
+                  </div>
+                  <span class="tabular shrink-0 text-[11.5px] text-ink-400">{c.data.year}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="text-[13px] text-ink-400">
+              Add markdown files to <code class="font-mono">src/content/certificates/</code>.
+            </p>
+          )
+        }
+      </section>
+    </div>
+
+    {/* ── Contents rail ─────────────────────────────────────────────────── */}
+    <aside class="hidden lg:block">
+      <Contents items={toc} />
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import { placeResearchMap } from '../scripts/research-map.js';
+  import { wireCategoryFilters } from '../scripts/category-filter.js';
+  placeResearchMap();
+  wireCategoryFilters();
+</script>
